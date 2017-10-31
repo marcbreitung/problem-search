@@ -1,0 +1,160 @@
+let assert = require('chai').assert;
+
+import {Problem} from './../../../lib/Search/Problem';
+
+import {Action} from "../../../lib/Search/Action";
+import {Point} from "../../../lib/Graph/Point";
+import {State} from './../../../lib/Search/State';
+import {Graph} from './../../../lib/Graph/Graph';
+import {GraphNode} from './../../../lib/Graph/GraphNode';
+
+describe('Problem', function () {
+
+    describe('#constructor(id)', function () {
+        it('should set the properties graph, initialState and goal', function () {
+
+            let graph = new Graph();
+            let initialState = new State('A');
+            let goal = new State('B');
+
+            let problem = new Problem(graph, initialState, goal);
+
+            assert.propertyVal(problem, 'graph', graph);
+            assert.propertyVal(problem, 'initialState', initialState);
+            assert.propertyVal(problem, 'goal', goal);
+        });
+    });
+
+    describe('#actions(state)', function () {
+        it('should return the possible actions for the given state', function () {
+            let initialState = new State('A');
+            let goal = new State('B');
+            let graph = new Graph();
+            let nodeA = new GraphNode('A', null, null);
+            let nodeB = new GraphNode('B', null, null);
+            let nodeC = new GraphNode('C', null, null);
+
+            nodeA.addConnections([nodeB, nodeC]);
+            graph.addNode(nodeA);
+
+            let problem = new Problem(graph, initialState, goal);
+            assert.sameDeepMembers(problem.actions(new State('A')), [new Action('B'), new Action('C')]);
+        });
+        it('should return undefined the given state does not exists', function () {
+
+            let initialState = new State('A');
+            let goal = new State('B');
+            let graph = new Graph();
+
+            let nodeA = new GraphNode('A', null, null);
+            let nodeB = new GraphNode('B', null, null);
+            let nodeC = new GraphNode('C', null, null);
+
+            nodeA.addConnections([nodeB, nodeC]);
+
+            graph.addNode(nodeA);
+
+            let problem = new Problem(graph, initialState, goal);
+
+            assert.sameMembers(problem.actions(new State('X')), []);
+
+        });
+    });
+
+    describe('#stepCost(state, action)', function () {
+        it('should return 0 if state and action are zero', function () {
+            let graph = new Graph();
+            let problem = new Problem(graph, null, null);
+
+            assert.equal(problem.stepCost(null, null), 0);
+        });
+        it('should return the path costs', function () {
+            let state = new State('State');
+            let action = new Action('Action');
+
+            let graph = new Graph();
+            let nodeState = new GraphNode('State', null, new Point(0, 0));
+            let nodeAction = new GraphNode('Action', null, new Point(0, 100));
+
+            graph.addNode(nodeState);
+            graph.addNode(nodeAction);
+
+            let problem = new Problem(graph, null, null);
+            assert.equal(problem.stepCost(state, action), 100);
+        });
+    });
+
+    describe('#goalTest(state)', function () {
+        it('should return true if given state is the goal', function () {
+            let initialState = new State('A');
+            let goal = new State('B');
+            let graph = new Graph();
+            let problem = new Problem(graph, initialState, goal);
+            assert.isTrue(problem.goalTest(new State('B')));
+        });
+
+        it('should return false if given state is not the goal', function () {
+            let initialState = new State('A');
+            let goal = new State('B');
+            let graph = new Graph();
+            let problem = new Problem(graph, initialState, goal);
+            assert.isFalse(problem.goalTest(new State('X')));
+        });
+    });
+
+    describe('#result(state, action)', function () {
+        it('should return the result for the given state and action ', function () {
+            let initialState = new State('A');
+            let goal = new State('B');
+            let graph = new Graph();
+            let nodeA = new GraphNode('A', null, null);
+            let nodeB = new GraphNode('B', null, null);
+            let nodeC = new GraphNode('C', null, null);
+
+            nodeA.addConnections([nodeB, nodeC]);
+            graph.addNode(nodeA);
+
+            let problem = new Problem(graph, initialState, goal);
+
+            assert.deepEqual(problem.result(new State('A'), new Action('B')), new State('B'));
+
+        });
+        it('should return undefined for the given state and action if the given state does not exists', function () {
+            let initialState = new State('A');
+            let goal = new State('B');
+            let graph = new Graph();
+            let nodeA = new GraphNode('A', null, null);
+            let nodeB = new GraphNode('B', null, null);
+            let nodeC = new GraphNode('C', null, null);
+
+            nodeA.addConnections([nodeB, nodeC]);
+            graph.addNode(nodeA);
+
+            let problem = new Problem(graph, initialState, goal);
+
+            assert.isUndefined(problem.result(new State('X'), new Action('B')));
+
+        });
+    });
+
+    describe('#findGraphNodeByState(state)', function () {
+        it('should returns a GraphNode searched by the given state', function () {
+            let initialState = new State('A');
+            let goal = new State('B');
+            let graph = new Graph();
+            let nodeA = new GraphNode('A', null, null);
+            let nodeB = new GraphNode('B', null, null);
+            let nodeC = new GraphNode('C', null, null);
+
+            graph.addNode(nodeA);
+            graph.addNode(nodeB);
+            graph.addNode(nodeC);
+
+            let problem = new Problem(graph, initialState, goal);
+
+            assert.deepEqual(problem.findGraphNodeByState(new State('A')), nodeA);
+
+        });
+    });
+
+});
