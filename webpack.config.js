@@ -11,6 +11,12 @@ module.exports = {
     module: {
         rules: [
             {
+                enforce: 'pre',
+                test: /\.js$/,
+                include: [path.resolve(__dirname, 'lib')],
+                exclude: [path.resolve(__dirname, 'node_modules')]
+            },
+            {
                 test: /\.js$/,
                 include: [path.resolve(__dirname, 'lib')],
                 exclude: [path.resolve(__dirname, 'node_modules')],

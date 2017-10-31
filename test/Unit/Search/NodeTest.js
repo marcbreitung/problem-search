@@ -11,6 +11,29 @@ import {GraphNode} from './../../../lib/Graph/GraphNode';
 
 describe('Node', function () {
 
+    let graph;
+
+    beforeEach(function () {
+        let graphNodeA = new GraphNode('A', new Point(2, 2), new Point(20, 20));
+        let graphNodeB = new GraphNode('B', new Point(1, 1), new Point(10, 10));
+        let graphNodeC = new GraphNode('C', new Point(2, 1), new Point(20, 10));
+        let graphNodeD = new GraphNode('D', new Point(3, 1), new Point(30, 10));
+        let graphNodeE = new GraphNode('E', new Point(3, 2), new Point(30, 20));
+
+        graphNodeA.addConnections([graphNodeB, graphNodeD, graphNodeE]);
+        graphNodeB.addConnections([graphNodeA, graphNodeC]);
+        graphNodeC.addConnections([graphNodeB, graphNodeD]);
+        graphNodeD.addConnections([graphNodeA, graphNodeE, graphNodeC]);
+        graphNodeE.addConnections([graphNodeA, graphNodeD]);
+
+        graph = new Graph();
+        graph.addNode(graphNodeA);
+        graph.addNode(graphNodeB);
+        graph.addNode(graphNodeC);
+        graph.addNode(graphNodeD);
+        graph.addNode(graphNodeE);
+    });
+
     describe('#constructor(state)', function () {
         it('should set the property state', function () {
             let state = new State('State');
@@ -28,26 +51,6 @@ describe('Node', function () {
 
     describe('#make(problem, parent, action)', function () {
         it('should make a new node', function () {
-
-            let graphNodeA = new GraphNode('A', new Point(2, 2), new Point(20, 20));
-            let graphNodeB = new GraphNode('B', new Point(1, 1), new Point(10, 10));
-            let graphNodeC = new GraphNode('C', new Point(2, 1), new Point(20, 10));
-            let graphNodeD = new GraphNode('D', new Point(3, 1), new Point(30, 10));
-            let graphNodeE = new GraphNode('E', new Point(3, 2), new Point(30, 20));
-
-            graphNodeA.addConnections([graphNodeB, graphNodeD, graphNodeE]);
-            graphNodeB.addConnections([graphNodeA, graphNodeC]);
-            graphNodeC.addConnections([graphNodeB, graphNodeD]);
-            graphNodeD.addConnections([graphNodeA, graphNodeE, graphNodeC]);
-            graphNodeE.addConnections([graphNodeA, graphNodeD]);
-
-            let graph = new Graph();
-
-            graph.addNode(graphNodeA);
-            graph.addNode(graphNodeB);
-            graph.addNode(graphNodeC);
-            graph.addNode(graphNodeD);
-            graph.addNode(graphNodeE);
 
             let initialState = new State('A');
             let goal = new State('E');
@@ -69,26 +72,6 @@ describe('Node', function () {
     describe('#solution()', function () {
         it('should return the back path', function () {
 
-            let graphNodeA = new GraphNode('A', new Point(2, 2), new Point(20, 20));
-            let graphNodeB = new GraphNode('B', new Point(1, 1), new Point(10, 10));
-            let graphNodeC = new GraphNode('C', new Point(2, 1), new Point(20, 10));
-            let graphNodeD = new GraphNode('D', new Point(3, 1), new Point(30, 10));
-            let graphNodeE = new GraphNode('E', new Point(3, 2), new Point(30, 20));
-
-            graphNodeA.addConnections([graphNodeB, graphNodeD, graphNodeE]);
-            graphNodeB.addConnections([graphNodeA, graphNodeC]);
-            graphNodeC.addConnections([graphNodeB, graphNodeD]);
-            graphNodeD.addConnections([graphNodeA, graphNodeE, graphNodeC]);
-            graphNodeE.addConnections([graphNodeA, graphNodeD]);
-
-            let graph = new Graph();
-
-            graph.addNode(graphNodeA);
-            graph.addNode(graphNodeB);
-            graph.addNode(graphNodeC);
-            graph.addNode(graphNodeD);
-            graph.addNode(graphNodeE);
-
             let initialState = new State('A');
             let goal = new State('E');
             let problem = new Problem(graph, initialState, goal);
@@ -104,5 +87,3 @@ describe('Node', function () {
     });
 
 });
-
-
