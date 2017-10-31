@@ -5,8 +5,10 @@ import {UniformCostSearch} from './../../../../lib/Search/Strategy/UniformCostSe
 import {Node} from './../../../../lib/Search/Node';
 import {Point} from '../../../../lib/Graph/Point';
 import {State} from './../../../../lib/Search/State';
+import {Action} from './../../../../lib/Search/Action';
 import {Graph} from './../../../../lib/Graph/Graph';
 import {GraphNode} from './../../../../lib/Graph/GraphNode';
+import {Problem} from "../../../../lib/Search/Problem";
 
 describe('BreadthFirstSearch', function () {
 
@@ -86,7 +88,7 @@ describe('BreadthFirstSearch', function () {
     });
 
     describe('#updateNodeWithHigherPathCost(node)', function () {
-        it('should return frontier with lowest path cost', function () {
+        it('should replace node with lower path cost', function () {
 
             let initialState = new State('A');
 
@@ -123,8 +125,50 @@ describe('BreadthFirstSearch', function () {
     });
 
     describe('#extend(problem, node)', function () {
-        it('should return frontier with lowest path cost', function () {
+        it('should add extended nodes to frontier', function () {
 
+            let initialState = new State('A');
+            let goal = new State('C');
+            let problem = new Problem(graph, initialState, goal);
+
+            let uniformCostSearch = new UniformCostSearch();
+
+            uniformCostSearch.extend(problem, new Node(new State('A')));
+
+            let nodeA = new Node(initialState);
+            let nodeB = Node.make(problem, nodeA, new Action('B'));
+            let nodeD = Node.make(problem, nodeA, new Action('D'));
+            let nodeE = Node.make(problem, nodeA, new Action('E'));
+
+            assert.sameDeepOrderedMembers(uniformCostSearch.frontier, [nodeB, nodeD, nodeE]);
+
+        });
+    });
+
+    describe('#search(problem)', function () {
+        it('should direct return path from initialStet to goal if initial state is goal', function () {
+            let initialState = new State('A');
+            let goal = new State('A');
+            let problem = new Problem(graph, initialState, goal);
+
+            let uniformCostSearch = new UniformCostSearch();
+
+            let nodeA = new Node(initialState);
+
+            assert.sameDeepMembers(uniformCostSearch.search(problem).solution(), [nodeA]);
+        });
+        it('should return path from initial state to goal', function () {
+            let initialState = new State('A');
+            let goal = new State('C');
+            let problem = new Problem(graph, initialState, goal);
+
+            let uniformCostSearch = new UniformCostSearch();
+
+            let nodeA = new Node(initialState);
+            let nodeB = Node.make(problem, nodeA, new Action('B'));
+            let nodeC = Node.make(problem, nodeB, new Action('C'));
+
+            assert.sameDeepMembers(uniformCostSearch.search(problem).solution(), [nodeA, nodeB, nodeC]);
         });
     });
 
