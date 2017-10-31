@@ -45,6 +45,7 @@ describe('BreadthFirstSearch', function () {
 
     describe('#extend(problem, node)', function () {
         it('should add extended nodes to frontier', function () {
+
             let initialState = new State('A');
             let goal = new State('C');
             let problem = new Problem(graph, initialState, goal);
@@ -58,10 +59,53 @@ describe('BreadthFirstSearch', function () {
             let nodeD = Node.make(problem, nodeA, new Action('D'));
             let nodeE = Node.make(problem, nodeA, new Action('E'));
 
-            console.log(breadthFirstSearch.frontier);
+            assert.sameDeepMembers(breadthFirstSearch.frontier, [nodeB, nodeD, nodeE]);
+        });
+        it('should not add extended nodes to frontier if the node already exists', function () {
+
+            let initialState = new State('A');
+            let goal = new State('C');
+            let problem = new Problem(graph, initialState, goal);
+
+            let nodeA = new Node(initialState);
+            let nodeB = Node.make(problem, nodeA, new Action('B'));
+            let nodeD = Node.make(problem, nodeA, new Action('D'));
+            let nodeE = Node.make(problem, nodeA, new Action('E'));
+
+            let breadthFirstSearch = new BreadthFirstSearch();
+            breadthFirstSearch.frontier = [nodeB, nodeD, nodeE];
+            breadthFirstSearch.explored = [nodeB, nodeD, nodeE];
+
+            breadthFirstSearch.extend(problem, new Node(new State('A')));
 
             assert.sameDeepMembers(breadthFirstSearch.frontier, [nodeB, nodeD, nodeE]);
+        });
+    });
 
+    describe('#search(problem)', function () {
+        it('should direct return path from initialStet to goal if initial state is goal', function () {
+            let initialState = new State('A');
+            let goal = new State('A');
+            let problem = new Problem(graph, initialState, goal);
+
+            let breadthFirstSearch = new BreadthFirstSearch();
+
+            let nodeA = new Node(initialState);
+
+            assert.sameDeepMembers(breadthFirstSearch.search(problem).solution(), [nodeA]);
+        });
+        it('should return path from initial state to goal', function () {
+            let initialState = new State('A');
+            let goal = new State('C');
+            let problem = new Problem(graph, initialState, goal);
+
+            let breadthFirstSearch = new BreadthFirstSearch();
+
+            let nodeA = new Node(initialState);
+            let nodeB = Node.make(problem, nodeA, new Action('B'));
+            let nodeC = Node.make(problem, nodeB, new Action('C'));
+
+            assert.sameDeepMembers(breadthFirstSearch.search(problem).solution(), [nodeA, nodeB, nodeC]);
         });
     });
 
