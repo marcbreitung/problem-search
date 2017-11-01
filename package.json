@@ -2,8 +2,12 @@
   "name": "problem-search",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/bundle.js",
-  "module": "dist/bundle.js",
+  "main": "dist/problem-search.min.js",
+  "module": "dist/problem-search.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcbreitung/problem-search.git"
+  },
   "scripts": {
     "build": "npm run eslint && npm run test && npm run webpack",
     "webpack": "webpack --config webpack.config.js",
