@@ -89,17 +89,17 @@ describe('BaseSearch', function () {
         });
     });
 
-    describe('#addExploded(node)', function () {
+    describe('#addExplored(node)', function () {
         it('should add the node explored does not contains node', function () {
             let baseSearch = new BaseSearch();
             baseSearch.explored = [new Node(new State('A')), new Node(new State('B')), new Node(new State('C'))];
-            baseSearch.addExploded(new Node(new State('D')));
+            baseSearch.addExplored(new Node(new State('D')));
             assert.sameDeepMembers(baseSearch.explored, [new Node(new State('A')), new Node(new State('B')), new Node(new State('C')), new Node(new State('D'))]);
         });
         it('should not add the node explored does not contains node', function () {
             let baseSearch = new BaseSearch();
             baseSearch.explored = [new Node(new State('A')), new Node(new State('B')), new Node(new State('C'))];
-            baseSearch.addExploded(new Node(new State('A')));
+            baseSearch.addExplored(new Node(new State('A')));
             assert.sameDeepMembers(baseSearch.explored, [new Node(new State('A')), new Node(new State('B')), new Node(new State('C'))]);
         });
     });
