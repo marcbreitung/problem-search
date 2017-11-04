@@ -10,7 +10,7 @@ import {Graph} from './../../../../lib/Graph/Graph';
 import {GraphNode} from './../../../../lib/Graph/GraphNode';
 import {Action} from "../../../../lib/Search/Action";
 
-describe('DepthFirstSearch', function () {
+suite('DepthFirstSearch', function () {
 
     let graph;
 
@@ -41,8 +41,8 @@ describe('DepthFirstSearch', function () {
         graph.addNode(graphNodeY);
     });
 
-    describe('#recursiveSearch(node, problem)', function () {
-        it('should add the node to explored', function () {
+    suite('#recursiveSearch(node, problem)', function () {
+        test('should add the node to explored', function () {
             let initialState = new State('A');
             let goal = new State('B');
             let problem = new Problem(graph, initialState, goal);
@@ -53,7 +53,7 @@ describe('DepthFirstSearch', function () {
 
             assert.sameDeepMembers(depthFirstSearch.explored, [nodeA]);
         });
-        it('should return the node if given node is the goal', function () {
+        test('should return the node if given node is the goal', function () {
             let initialState = new State('A');
             let goal = new State('C');
             let problem = new Problem(graph, initialState, goal);
@@ -68,13 +68,13 @@ describe('DepthFirstSearch', function () {
         });
     });
 
-    describe('#search(problem)', function () {
-        it('should initialize frontier and explored', function () {
+    suite('#search(problem)', function () {
+        test('should initialize frontier and explored', function () {
             let depthFirstSearch = new DepthFirstSearch();
             assert.deepPropertyVal(depthFirstSearch, 'frontier', []);
             assert.deepPropertyVal(depthFirstSearch, 'explored', []);
         });
-        it('should return path from initial state to goal', function () {
+        test('should return path from initial state to goal', function () {
 
             let initialState = new State('A');
             let goal = new State('C');

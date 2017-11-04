@@ -12,7 +12,7 @@
     "build": "npm run eslint && npm run test && npm run webpack",
     "webpack": "webpack --config webpack.config.js",
     "eslint": "eslint lib/**/*.js",
-    "test": "nyc mocha --require babel-register test/**/*.js --reporter spec"
+    "test": "nyc mocha --ui tdd --require babel-register test/**/*.js --reporter spec"
   },
   "author": "Marc Breitung",
   "license": "ISC",

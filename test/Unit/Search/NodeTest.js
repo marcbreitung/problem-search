@@ -9,7 +9,7 @@ import {Problem} from './../../../lib/Search/Problem';
 import {Graph} from './../../../lib/Graph/Graph';
 import {GraphNode} from './../../../lib/Graph/GraphNode';
 
-describe('Node', function () {
+suite('Node', function () {
 
     let graph;
 
@@ -34,13 +34,13 @@ describe('Node', function () {
         graph.addNode(graphNodeE);
     });
 
-    describe('#constructor(state)', function () {
-        it('should set the property state', function () {
+    suite('#constructor(state)', function () {
+        test('should set the property state', function () {
             let state = new State('State');
             let node = new Node(state);
             assert.propertyVal(node, 'state', state);
         });
-        it('should initialize properties parent, action and pathCost', function () {
+        test('should initialize properties parent, action and pathCost', function () {
             let state = new State('State');
             let node = new Node(state);
             assert.propertyVal(node, 'parent', null);
@@ -49,8 +49,8 @@ describe('Node', function () {
         });
     });
 
-    describe('#make(problem, parent, action)', function () {
-        it('should make a new node', function () {
+    suite('#make(problem, parent, action)', function () {
+        test('should make a new node', function () {
 
             let initialState = new State('A');
             let goal = new State('E');
@@ -69,8 +69,8 @@ describe('Node', function () {
         });
     });
 
-    describe('#solution()', function () {
-        it('should return the back path', function () {
+    suite('#solution()', function () {
+        test('should return the back path', function () {
 
             let initialState = new State('A');
             let goal = new State('E');

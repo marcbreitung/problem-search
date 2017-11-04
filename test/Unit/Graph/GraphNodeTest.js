@@ -4,37 +4,37 @@ import {GraphNode} from './../../../lib/Graph/GraphNode';
 
 import {Point} from './../../../lib/Graph/Point';
 
-describe('GraphNode', function () {
+suite('GraphNode', function () {
 
-    describe('#constructor(id)', function () {
-        it('should initialize empty connections array', function () {
+    suite('#constructor(id)', function () {
+        test('should initialize empty connections array', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
             assert.sameMembers(graphNode.connections, []);
         });
-        it('should set property id', function () {
+        test('should set property id', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
             assert.propertyVal(graphNode, 'id', 'Graph Node ID');
         });
-        it('should set property point', function () {
+        test('should set property point', function () {
             let point = new Point(1, 2);
             let graphNode = new GraphNode('Graph Node ID', point, null);
             assert.propertyVal(graphNode, 'point', point);
         });
-        it('should set property position', function () {
+        test('should set property position', function () {
             let position = new Point(1, 2);
             let graphNode = new GraphNode('Graph Node ID', null, position);
             assert.propertyVal(graphNode, 'position', position);
         });
     });
 
-    describe('#addConnection(connection)', function () {
-        it('should add the given connection to the connections array', function () {
+    suite('#addConnection(connection)', function () {
+        test('should add the given connection to the connections array', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
             let connection = new GraphNode('Connection', null, null);
             graphNode.addConnection(connection);
             assert.sameMembers(graphNode.connections, [connection]);
         });
-        it('should add the given connection to the connections array if the array does not has the given connection', function () {
+        test('should add the given connection to the connections array if the array does not has the given connection', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
             let connection = new GraphNode('Connection', null, null);
             graphNode.addConnection(connection);
@@ -42,7 +42,7 @@ describe('GraphNode', function () {
             graphNode.addConnection(connection);
             assert.sameMembers(graphNode.connections, [connection]);
         });
-        it('should add the given connections to the connections array', function () {
+        test('should add the given connections to the connections array', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
             let connectionA = new GraphNode('Connection A', null, null);
             let connectionB = new GraphNode('Connection B', null, null);
@@ -51,8 +51,8 @@ describe('GraphNode', function () {
         });
     });
 
-    describe('#removeConnection(connection)', function () {
-        it('should remove the given connection to the connections array', function () {
+    suite('#removeConnection(connection)', function () {
+        test('should remove the given connection to the connections array', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
             let connection = new GraphNode('Connection', null, null);
             graphNode.addConnection(connection);
@@ -61,7 +61,7 @@ describe('GraphNode', function () {
             graphNode.removeConnection(connection);
             assert.sameMembers(graphNode.connections, []);
         });
-        it('should does not remove connection if does not exists', function () {
+        test('should does not remove connection if does not exists', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
             let connectionA = new GraphNode('Connection A', null, null);
             let connectionB = new GraphNode('Connection B', null, null);

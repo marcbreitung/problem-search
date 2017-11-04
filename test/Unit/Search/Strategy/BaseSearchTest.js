@@ -9,7 +9,7 @@ import {Problem} from './../../../../lib/Search/Problem';
 import {Graph} from './../../../../lib/Graph/Graph';
 import {GraphNode} from './../../../../lib/Graph/GraphNode';
 
-describe('BaseSearch', function () {
+suite('BaseSearch', function () {
 
     let graph;
 
@@ -34,24 +34,24 @@ describe('BaseSearch', function () {
         graph.addNode(graphNodeE);
     });
 
-    describe('#constructor()', function () {
-        it('should initialize frontier and explored', function () {
+    suite('#constructor()', function () {
+        test('should initialize frontier and explored', function () {
             let baseSearch = new BaseSearch();
             assert.deepPropertyVal(baseSearch, 'frontier', []);
             assert.deepPropertyVal(baseSearch, 'explored', []);
         });
     });
 
-    describe('#initSearch()', function () {
-        it('should initialize frontier and explored', function () {
+    suite('#initSearch()', function () {
+        test('should initialize frontier and explored', function () {
             let baseSearch = new BaseSearch();
             assert.deepPropertyVal(baseSearch, 'frontier', []);
             assert.deepPropertyVal(baseSearch, 'explored', []);
         });
     });
 
-    describe('#addInitial(problem)', function () {
-        it('should return true if initialNode is goal', function () {
+    suite('#addInitial(problem)', function () {
+        test('should return true if initialNode is goal', function () {
 
             let initialState = new State('A');
             let goal = new State('A');
@@ -61,7 +61,7 @@ describe('BaseSearch', function () {
 
             assert.deepInclude(baseSearch.addInitial(problem), new Node(new State('A')));
         });
-        it('should add initialNode to frontier if initialNode is not the goal', function () {
+        test('should add initialNode to frontier if initialNode is not the goal', function () {
 
             let initialState = new State('A');
             let goal = new State('B');
@@ -74,14 +74,14 @@ describe('BaseSearch', function () {
         });
     });
 
-    describe('#addFrontier(node)', function () {
-        it('should add the node frontier does not contains node', function () {
+    suite('#addFrontier(node)', function () {
+        test('should add the node frontier does not contains node', function () {
             let baseSearch = new BaseSearch();
             baseSearch.frontier = [new Node(new State('A')), new Node(new State('B')), new Node(new State('C'))];
             baseSearch.addFrontier(new Node(new State('D')));
             assert.sameDeepMembers(baseSearch.frontier, [new Node(new State('A')), new Node(new State('B')), new Node(new State('C')), new Node(new State('D'))]);
         });
-        it('should not add the node frontier does not contains node', function () {
+        test('should not add the node frontier does not contains node', function () {
             let baseSearch = new BaseSearch();
             baseSearch.frontier = [new Node(new State('A')), new Node(new State('B')), new Node(new State('C'))];
             baseSearch.addFrontier(new Node(new State('A')));
@@ -89,14 +89,14 @@ describe('BaseSearch', function () {
         });
     });
 
-    describe('#addExplored(node)', function () {
-        it('should add the node explored does not contains node', function () {
+    suite('#addExplored(node)', function () {
+        test('should add the node explored does not contains node', function () {
             let baseSearch = new BaseSearch();
             baseSearch.explored = [new Node(new State('A')), new Node(new State('B')), new Node(new State('C'))];
             baseSearch.addExplored(new Node(new State('D')));
             assert.sameDeepMembers(baseSearch.explored, [new Node(new State('A')), new Node(new State('B')), new Node(new State('C')), new Node(new State('D'))]);
         });
-        it('should not add the node explored does not contains node', function () {
+        test('should not add the node explored does not contains node', function () {
             let baseSearch = new BaseSearch();
             baseSearch.explored = [new Node(new State('A')), new Node(new State('B')), new Node(new State('C'))];
             baseSearch.addExplored(new Node(new State('A')));
@@ -104,40 +104,40 @@ describe('BaseSearch', function () {
         });
     });
 
-    describe('#nodeExistsInFrontier(node)', function () {
-        it('should return true if frontier contains node', function () {
+    suite('#nodeExistsInFrontier(node)', function () {
+        test('should return true if frontier contains node', function () {
             let baseSearch = new BaseSearch();
             baseSearch.frontier = [new Node(new State('A')), new Node(new State('B')), new Node(new State('C'))];
             assert.isTrue(baseSearch.nodeExistsInFrontier(new Node(new State('B'))));
         });
-        it('should return false if frontier does not contains node', function () {
+        test('should return false if frontier does not contains node', function () {
             let baseSearch = new BaseSearch();
             baseSearch.frontier = [new Node(new State('B')), new Node(new State('B')), new Node(new State('C'))];
             assert.isFalse(baseSearch.nodeExistsInFrontier(new Node(new State('X'))));
         });
     });
 
-    describe('#nodeExistsInExplored(node)', function () {
-        it('should return true if explored contains node', function () {
+    suite('#nodeExistsInExplored(node)', function () {
+        test('should return true if explored contains node', function () {
             let baseSearch = new BaseSearch();
             baseSearch.explored = [new Node(new State('A')), new Node(new State('B')), new Node(new State('C'))];
             assert.isTrue(baseSearch.nodeExistsInExplored(new Node(new State('B'))));
         });
-        it('should return false if explored does not contains node', function () {
+        test('should return false if explored does not contains node', function () {
             let baseSearch = new BaseSearch();
             baseSearch.explored = [new Node(new State('B')), new Node(new State('B')), new Node(new State('C'))];
             assert.isFalse(baseSearch.nodeExistsInExplored(new Node(new State('X'))));
         });
     });
 
-    describe('#nodeExists(node)', function () {
-        it('should return true if explored and frontier contains node', function () {
+    suite('#nodeExists(node)', function () {
+        test('should return true if explored and frontier contains node', function () {
             let baseSearch = new BaseSearch();
             baseSearch.frontier = [new Node(new State('A')), new Node(new State('B')), new Node(new State('C'))];
             baseSearch.explored = [new Node(new State('A')), new Node(new State('B')), new Node(new State('C'))];
             assert.isTrue(baseSearch.nodeExists(new Node(new State('B'))));
         });
-        it('should return false if explored and frontier does not contains node', function () {
+        test('should return false if explored and frontier does not contains node', function () {
             let baseSearch = new BaseSearch();
             baseSearch.frontier = [new Node(new State('A')), new Node(new State('B')), new Node(new State('C'))];
             baseSearch.explored = [new Node(new State('A')), new Node(new State('B')), new Node(new State('C'))];

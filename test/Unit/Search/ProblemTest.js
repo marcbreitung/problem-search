@@ -8,10 +8,10 @@ import {State} from './../../../lib/Search/State';
 import {Graph} from './../../../lib/Graph/Graph';
 import {GraphNode} from './../../../lib/Graph/GraphNode';
 
-describe('Problem', function () {
+suite('Problem', function () {
 
-    describe('#constructor(id)', function () {
-        it('should set the properties graph, initialState and goal', function () {
+    suite('#constructor(id)', function () {
+        test('should set the properties graph, initialState and goal', function () {
 
             let graph = new Graph();
             let initialState = new State('A');
@@ -25,8 +25,8 @@ describe('Problem', function () {
         });
     });
 
-    describe('#actions(state)', function () {
-        it('should return the possible actions for the given state', function () {
+    suite('#actions(state)', function () {
+        test('should return the possible actions for the given state', function () {
             let initialState = new State('A');
             let goal = new State('B');
             let graph = new Graph();
@@ -40,7 +40,7 @@ describe('Problem', function () {
             let problem = new Problem(graph, initialState, goal);
             assert.sameDeepMembers(problem.actions(new State('A')), [new Action('B'), new Action('C')]);
         });
-        it('should return undefined the given state does not exists', function () {
+        test('should return undefined the given state does not exists', function () {
 
             let initialState = new State('A');
             let goal = new State('B');
@@ -61,14 +61,14 @@ describe('Problem', function () {
         });
     });
 
-    describe('#stepCost(state, action)', function () {
-        it('should return 0 if state and action are zero', function () {
+    suite('#stepCost(state, action)', function () {
+        test('should return 0 if state and action are zero', function () {
             let graph = new Graph();
             let problem = new Problem(graph, null, null);
 
             assert.equal(problem.stepCost(null, null), 0);
         });
-        it('should return the path costs', function () {
+        test('should return the path costs', function () {
             let state = new State('State');
             let action = new Action('Action');
 
@@ -84,8 +84,8 @@ describe('Problem', function () {
         });
     });
 
-    describe('#goalTest(state)', function () {
-        it('should return true if given state is the goal', function () {
+    suite('#goalTest(state)', function () {
+        test('should return true if given state is the goal', function () {
             let initialState = new State('A');
             let goal = new State('B');
             let graph = new Graph();
@@ -93,7 +93,7 @@ describe('Problem', function () {
             assert.isTrue(problem.goalTest(new State('B')));
         });
 
-        it('should return false if given state is not the goal', function () {
+        test('should return false if given state is not the goal', function () {
             let initialState = new State('A');
             let goal = new State('B');
             let graph = new Graph();
@@ -102,8 +102,8 @@ describe('Problem', function () {
         });
     });
 
-    describe('#result(state, action)', function () {
-        it('should return the result for the given state and action ', function () {
+    suite('#result(state, action)', function () {
+        test('should return the result for the given state and action ', function () {
             let initialState = new State('A');
             let goal = new State('B');
             let graph = new Graph();
@@ -119,7 +119,7 @@ describe('Problem', function () {
             assert.deepEqual(problem.result(new State('A'), new Action('B')), new State('B'));
 
         });
-        it('should return undefined for the given state and action if the given state does not exists', function () {
+        test('should return undefined for the given state and action if the given state does not exists', function () {
             let initialState = new State('A');
             let goal = new State('B');
             let graph = new Graph();
@@ -137,8 +137,8 @@ describe('Problem', function () {
         });
     });
 
-    describe('#findGraphNodeByState(state)', function () {
-        it('should returns a GraphNode searched by the given state', function () {
+    suite('#findGraphNodeByState(state)', function () {
+        test('should returns a GraphNode searched by the given state', function () {
             let initialState = new State('A');
             let goal = new State('B');
             let graph = new Graph();

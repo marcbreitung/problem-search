@@ -4,17 +4,17 @@ import {Graph} from './../../../lib/Graph/Graph';
 
 import {GraphNode} from './../../../lib/Graph/GraphNode';
 
-describe('Graph', function () {
+suite('Graph', function () {
 
-    describe('#constructor()', function () {
-        it('should initialize empty node array', function () {
+    suite('#constructor()', function () {
+        test('should initialize empty node array', function () {
             let graph = new Graph();
             assert.sameMembers(graph.nodes, []);
         });
     });
 
-    describe('#addNode(node)', function () {
-        it('should add the given node to the nodes array', function () {
+    suite('#addNode(node)', function () {
+        test('should add the given node to the nodes array', function () {
             let graph = new Graph();
             assert.sameMembers(graph.nodes, []);
 
@@ -22,7 +22,7 @@ describe('Graph', function () {
             graph.addNode(graphNode);
             assert.sameMembers(graph.nodes, [graphNode]);
         });
-        it('should not add the given node to the nodes array if node already exists', function () {
+        test('should not add the given node to the nodes array if node already exists', function () {
             let graph = new Graph();
             assert.sameMembers(graph.nodes, []);
 
@@ -33,8 +33,8 @@ describe('Graph', function () {
         });
     });
 
-    describe('#removeNode(node)', function () {
-        it('should remove the given node from the nodes array', function () {
+    suite('#removeNode(node)', function () {
+        test('should remove the given node from the nodes array', function () {
             let graph = new Graph();
             assert.sameMembers(graph.nodes, []);
 
@@ -45,7 +45,7 @@ describe('Graph', function () {
             graph.removeNode(graphNode);
             assert.sameMembers(graph.nodes, []);
         });
-        it('should remove the given node from the nodes array if node does not exists', function () {
+        test('should remove the given node from the nodes array if node does not exists', function () {
             let graph = new Graph();
             let graphNodeA = new GraphNode('Id A', null, null);
             let graphNodeB = new GraphNode('Id B', null, null);
@@ -55,14 +55,14 @@ describe('Graph', function () {
         });
     });
 
-    describe('#findByNode(node)', function () {
-        it('should return the given node if the nodes is in the array', function () {
+    suite('#findByNode(node)', function () {
+        test('should return the given node if the nodes is in the array', function () {
             let graph = new Graph();
             let graphNode = new GraphNode('Id 1', null, null);
             graph.addNode(graphNode);
             assert.equal(graph.findByNode(graphNode), graphNode);
         });
-        it('should return undefined if the nodes is not in the array', function () {
+        test('should return undefined if the nodes is not in the array', function () {
             let graph = new Graph();
             let graphNode = new GraphNode('Id 1', null, null);
             assert.equal(graph.findByNode(graphNode), undefined);
