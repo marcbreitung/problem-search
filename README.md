@@ -2,7 +2,7 @@
 
 ## Problem
 ```javascript
-    var graph = 'a Graph (e.g ProblemMapGenerator.Map())';
+    var graph = 'e.g ProblemMapGenerator.Map()';
     var initialState = new ProblemSearch.State('A');
     var goal = new ProblemSearch.State('B');
 
