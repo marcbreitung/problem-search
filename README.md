@@ -6,7 +6,7 @@
     var initialState = new ProblemSearch.State('A');
     var goal = new ProblemSearch.State('B');
 
-    var point = new ProblemSearch.Problem(graph, initialState, goal);
+    var problem = new ProblemSearch.Problem(graph, initialState, goal);
 ```
 ## Search Strategies
 
