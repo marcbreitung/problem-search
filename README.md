@@ -2,7 +2,25 @@
 
 ## Problem
 ```javascript
-    var graph = 'e.g ProblemMapGenerator.Map()';
+    var graphNodeA = new ProblemSearch.GraphNode('A', new ProblemSearch.Point(2, 2), new ProblemSearch.Point(20, 20));
+    var graphNodeB = new ProblemSearch.GraphNode('B', new ProblemSearch.Point(1, 1), new ProblemSearch.Point(10, 10));
+    var graphNodeC = new ProblemSearch.GraphNode('C', new ProblemSearch.Point(2, 1), new ProblemSearch.Point(20, 10));
+    var graphNodeD = new ProblemSearch.GraphNode('D', new ProblemSearch.Point(3, 1), new ProblemSearch.Point(30, 10));
+    var graphNodeE = new ProblemSearch.GraphNode('E', new ProblemSearch.Point(3, 2), new ProblemSearch.Point(30, 20));
+
+    graphNodeA.addConnections([graphNodeB, graphNodeD, graphNodeE]);
+    graphNodeB.addConnections([graphNodeA, graphNodeC]);
+    graphNodeC.addConnections([graphNodeB, graphNodeD]);
+    graphNodeD.addConnections([graphNodeA, graphNodeE, graphNodeC]);
+    graphNodeE.addConnections([graphNodeA, graphNodeD]);
+
+    var graph = new ProblemSearch.Graph();
+    graph.addNode(graphNodeA);
+    graph.addNode(graphNodeB);
+    graph.addNode(graphNodeC);
+    graph.addNode(graphNodeD);
+    graph.addNode(graphNodeE);
+
     var initialState = new ProblemSearch.State('A');
     var goal = new ProblemSearch.State('B');
 
