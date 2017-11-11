@@ -33,7 +33,7 @@ var graph = new ProblemSearch.Graph();
 graph.addNodes(graphNodes);
 ```
 
-#### Building Problem with graph, initial state and goal
+#### Building problem with graph, initial state and goal
 ```javascript
 var initialState = new ProblemSearch.State('2-2');
 var goal = new ProblemSearch.State('3-2');
