@@ -33,12 +33,14 @@ var graph = new ProblemSearch.Graph();
 graph.addNodes(graphNodes);
 ```
 
+#### Build Problem with graph, initial state and goal
 ```javascript
 var initialState = new ProblemSearch.State('2-2');
 var goal = new ProblemSearch.State('3-2');
 
 var problem = new ProblemSearch.Problem(graph, initialState, goal);
 ```
+
 ## Search Strategies
 
 ### Breadth First Search
