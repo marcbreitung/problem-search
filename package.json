@@ -1,6 +1,6 @@
 {
   "name": "problem-search",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "AI search problems strategies",
   "main": "dist/problem-search.min.js",
   "module": "dist/problem-search.min.js",
@@ -15,7 +15,7 @@
     "test": "nyc mocha --ui tdd --require babel-register test/**/*.js --reporter spec"
   },
   "author": "Marc Breitung",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
