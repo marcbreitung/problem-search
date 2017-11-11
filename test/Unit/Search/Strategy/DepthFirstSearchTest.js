@@ -24,12 +24,12 @@ suite('DepthFirstSearch', function () {
         let graphNodeX = new GraphNode('X', new Point(5, 5), new Point(50, 50));
         let graphNodeY = new GraphNode('Y', new Point(6, 6), new Point(60, 60));
 
-        graphNodeA.addConnections([graphNodeB, graphNodeD, graphNodeE]);
-        graphNodeB.addConnections([graphNodeA, graphNodeC]);
-        graphNodeC.addConnections([graphNodeB, graphNodeD]);
-        graphNodeD.addConnections([graphNodeA, graphNodeE, graphNodeC]);
-        graphNodeE.addConnections([graphNodeA, graphNodeD]);
-        graphNodeX.addConnections([graphNodeY]);
+        graphNodeA.addChildNodes([graphNodeB, graphNodeD, graphNodeE]);
+        graphNodeB.addChildNodes([graphNodeA, graphNodeC]);
+        graphNodeC.addChildNodes([graphNodeB, graphNodeD]);
+        graphNodeD.addChildNodes([graphNodeA, graphNodeE, graphNodeC]);
+        graphNodeE.addChildNodes([graphNodeA, graphNodeD]);
+        graphNodeX.addChildNodes([graphNodeY]);
 
         graph = new Graph();
         graph.addNode(graphNodeA);

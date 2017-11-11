@@ -8,11 +8,11 @@
     var graphNodeD = new ProblemSearch.GraphNode('D', new ProblemSearch.Point(3, 1), new ProblemSearch.Point(30, 10));
     var graphNodeE = new ProblemSearch.GraphNode('E', new ProblemSearch.Point(3, 2), new ProblemSearch.Point(30, 20));
 
-    graphNodeA.addConnections([graphNodeB, graphNodeD, graphNodeE]);
-    graphNodeB.addConnections([graphNodeA, graphNodeC]);
-    graphNodeC.addConnections([graphNodeB, graphNodeD]);
-    graphNodeD.addConnections([graphNodeA, graphNodeE, graphNodeC]);
-    graphNodeE.addConnections([graphNodeA, graphNodeD]);
+    graphNodeA.addChildNodes([graphNodeB, graphNodeD, graphNodeE]);
+    graphNodeB.addChildNodes([graphNodeA, graphNodeC]);
+    graphNodeC.addChildNodes([graphNodeB, graphNodeD]);
+    graphNodeD.addChildNodes([graphNodeA, graphNodeE, graphNodeC]);
+    graphNodeE.addChildNodes([graphNodeA, graphNodeD]);
 
     var graph = new ProblemSearch.Graph();
     graph.addNode(graphNodeA);

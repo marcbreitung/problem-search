@@ -20,11 +20,11 @@ suite('Node', function () {
         let graphNodeD = new GraphNode('D', new Point(3, 1), new Point(30, 10));
         let graphNodeE = new GraphNode('E', new Point(3, 2), new Point(30, 20));
 
-        graphNodeA.addConnections([graphNodeB, graphNodeD, graphNodeE]);
-        graphNodeB.addConnections([graphNodeA, graphNodeC]);
-        graphNodeC.addConnections([graphNodeB, graphNodeD]);
-        graphNodeD.addConnections([graphNodeA, graphNodeE, graphNodeC]);
-        graphNodeE.addConnections([graphNodeA, graphNodeD]);
+        graphNodeA.addChildNodes([graphNodeB, graphNodeD, graphNodeE]);
+        graphNodeB.addChildNodes([graphNodeA, graphNodeC]);
+        graphNodeC.addChildNodes([graphNodeB, graphNodeD]);
+        graphNodeD.addChildNodes([graphNodeA, graphNodeE, graphNodeC]);
+        graphNodeE.addChildNodes([graphNodeA, graphNodeD]);
 
         graph = new Graph();
         graph.addNode(graphNodeA);

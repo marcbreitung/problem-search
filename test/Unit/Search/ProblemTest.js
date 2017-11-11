@@ -34,7 +34,7 @@ suite('Problem', function () {
             let nodeB = new GraphNode('B', null, null);
             let nodeC = new GraphNode('C', null, null);
 
-            nodeA.addConnections([nodeB, nodeC]);
+            nodeA.addChildNodes([nodeB, nodeC]);
             graph.addNode(nodeA);
 
             let problem = new Problem(graph, initialState, goal);
@@ -50,7 +50,7 @@ suite('Problem', function () {
             let nodeB = new GraphNode('B', null, null);
             let nodeC = new GraphNode('C', null, null);
 
-            nodeA.addConnections([nodeB, nodeC]);
+            nodeA.addChildNodes([nodeB, nodeC]);
 
             graph.addNode(nodeA);
 
@@ -111,7 +111,7 @@ suite('Problem', function () {
             let nodeB = new GraphNode('B', null, null);
             let nodeC = new GraphNode('C', null, null);
 
-            nodeA.addConnections([nodeB, nodeC]);
+            nodeA.addChildNodes([nodeB, nodeC]);
             graph.addNode(nodeA);
 
             let problem = new Problem(graph, initialState, goal);
@@ -127,7 +127,7 @@ suite('Problem', function () {
             let nodeB = new GraphNode('B', null, null);
             let nodeC = new GraphNode('C', null, null);
 
-            nodeA.addConnections([nodeB, nodeC]);
+            nodeA.addChildNodes([nodeB, nodeC]);
             graph.addNode(nodeA);
 
             let problem = new Problem(graph, initialState, goal);

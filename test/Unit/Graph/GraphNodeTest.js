@@ -7,9 +7,9 @@ import {Point} from './../../../lib/Graph/Point';
 suite('GraphNode', function () {
 
     suite('#constructor(id)', function () {
-        test('should initialize empty connections array', function () {
+        test('should initialize empty childs array', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
-            assert.sameMembers(graphNode.connections, []);
+            assert.sameMembers(graphNode.childs, []);
         });
         test('should set property id', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
@@ -27,50 +27,50 @@ suite('GraphNode', function () {
         });
     });
 
-    suite('#addConnection(connection)', function () {
-        test('should add the given connection to the connections array', function () {
+    suite('#addChildNode(child)', function () {
+        test('should add the given child to the childs array', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
-            let connection = new GraphNode('Connection', null, null);
-            graphNode.addConnection(connection);
-            assert.sameMembers(graphNode.connections, [connection]);
+            let child = new GraphNode('child', null, null);
+            graphNode.addChildNode(child);
+            assert.sameMembers(graphNode.childs, [child]);
         });
-        test('should add the given connection to the connections array if the array does not has the given connection', function () {
+        test('should add the given child to the childs array if the array does not has the given child', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
-            let connection = new GraphNode('Connection', null, null);
-            graphNode.addConnection(connection);
-            assert.sameMembers(graphNode.connections, [connection]);
-            graphNode.addConnection(connection);
-            assert.sameMembers(graphNode.connections, [connection]);
+            let child = new GraphNode('child', null, null);
+            graphNode.addChildNode(child);
+            assert.sameMembers(graphNode.childs, [child]);
+            graphNode.addChildNode(child);
+            assert.sameMembers(graphNode.childs, [child]);
         });
-        test('should add the given connections to the connections array', function () {
+        test('should add the given childs to the childs array', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
-            let connectionA = new GraphNode('Connection A', null, null);
-            let connectionB = new GraphNode('Connection B', null, null);
-            graphNode.addConnections([connectionA, connectionB]);
-            assert.sameMembers(graphNode.connections, [connectionA, connectionB]);
+            let childA = new GraphNode('child A', null, null);
+            let childB = new GraphNode('child B', null, null);
+            graphNode.addChildNodes([childA, childB]);
+            assert.sameMembers(graphNode.childs, [childA, childB]);
         });
     });
 
-    suite('#removeConnection(connection)', function () {
-        test('should remove the given connection to the connections array', function () {
+    suite('#removeChildNode(child)', function () {
+        test('should remove the given child to the childs array', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
-            let connection = new GraphNode('Connection', null, null);
-            graphNode.addConnection(connection);
-            assert.sameMembers(graphNode.connections, [connection]);
+            let child = new GraphNode('child', null, null);
+            graphNode.addChildNode(child);
+            assert.sameMembers(graphNode.childs, [child]);
 
-            graphNode.removeConnection(connection);
-            assert.sameMembers(graphNode.connections, []);
+            graphNode.removeChildNode(child);
+            assert.sameMembers(graphNode.childs, []);
         });
-        test('should does not remove connection if does not exists', function () {
+        test('should does not remove child if does not exists', function () {
             let graphNode = new GraphNode('Graph Node ID', null, null);
-            let connectionA = new GraphNode('Connection A', null, null);
-            let connectionB = new GraphNode('Connection B', null, null);
+            let childA = new GraphNode('child A', null, null);
+            let childB = new GraphNode('child B', null, null);
 
-            graphNode.addConnection(connectionA);
-            assert.sameMembers(graphNode.connections, [connectionA]);
+            graphNode.addChildNode(childA);
+            assert.sameMembers(graphNode.childs, [childA]);
 
-            graphNode.removeConnection(connectionB);
-            assert.sameMembers(graphNode.connections, [connectionA]);
+            graphNode.removeChildNode(childB);
+            assert.sameMembers(graphNode.childs, [childA]);
         });
     });
 
