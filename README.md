@@ -24,9 +24,11 @@ graph.addNodes([graphNodeA, graphNodeB, graphNodeC, graphNodeD, graphNodeE]);
 ```javascript
 var map = new ProblemMapGenerator.Map({'cols': 10, 'rows': 10, 'width': 1000, 'height': 1000});
 map.injectRandom(ProblemMapGenerator.Random);
+
 var graphNodes = map.getNodes();
+
 var graph = new ProblemSearch.Graph();
-graph.addNodes(nodes);
+graph.addNodes(graphNodes);
 ```
 
 ```javascript
