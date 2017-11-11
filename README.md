@@ -20,7 +20,7 @@ var graph = new ProblemSearch.Graph();
 graph.addNodes([graphNodeA, graphNodeB, graphNodeC, graphNodeD, graphNodeE]);
 ```
 
-### Building with [problem-map-generator](https://github.com/marcbreitung/problem-map-generator)
+### Building graph with [problem-map-generator](https://github.com/marcbreitung/problem-map-generator)
 ```javascript
 var map = new ProblemMapGenerator.Map({'cols': 10, 'rows': 10, 'width': 1000, 'height': 1000});
 map.injectRandom(ProblemMapGenerator.Random);
