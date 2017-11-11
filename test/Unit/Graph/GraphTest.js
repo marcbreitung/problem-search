@@ -33,6 +33,32 @@ suite('Graph', function () {
         });
     });
 
+    suite('#addNodes(nodes)', function () {
+        test('should add the given nodes to the nodes array', function () {
+            let graph = new Graph();
+            assert.sameMembers(graph.nodes, []);
+
+            let graphNodeA = new GraphNode('Id A', null, null);
+            let graphNodeB = new GraphNode('Id B', null, null);
+            let graphNodeC = new GraphNode('Id C', null, null);
+            graph.addNodes([graphNodeA, graphNodeB, graphNodeC]);
+
+            assert.sameMembers(graph.nodes, [graphNodeA, graphNodeB, graphNodeC]);
+        });
+        test('should not add the given nodes to the nodes array if node already exists', function () {
+            let graph = new Graph();
+            assert.sameMembers(graph.nodes, []);
+
+            let graphNodeA = new GraphNode('Id A', null, null);
+            let graphNodeB = new GraphNode('Id B', null, null);
+            let graphNodeC = new GraphNode('Id C', null, null);
+            graph.addNodes([graphNodeA, graphNodeB, graphNodeC]);
+            graph.addNodes([graphNodeA, graphNodeB, graphNodeC]);
+
+            assert.sameMembers(graph.nodes, [graphNodeA, graphNodeB, graphNodeC]);
+        });
+    });
+
     suite('#removeNode(node)', function () {
         test('should remove the given node from the nodes array', function () {
             let graph = new Graph();
