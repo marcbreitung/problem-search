@@ -1,6 +1,6 @@
 # Problem Search
 
-[![Build Status](https://travis-ci.org/marcbreitung/problem-search.svg?branch=master)](https://travis-ci.org/marcbreitung/problem-search)
+[![Build Status](https://travis-ci.org/marcbreitung/problem-search.svg?branch=master)](https://travis-ci.org/marcbreitung/problem-search) [![Coverage Status](https://coveralls.io/repos/github/marcbreitung/problem-search/badge.svg?branch=master)](https://coveralls.io/github/marcbreitung/problem-search?branch=master)
 
 ## Problem graph
 
