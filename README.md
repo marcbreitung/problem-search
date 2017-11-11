@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/marcbreitung/problem-search.svg?branch=master)](https://travis-ci.org/marcbreitung/problem-search)
 
-## Problem
+## Problem graph
 
-### Building graph manually
+### Build graph manually
 ```javascript
 var graphNodeA = new ProblemSearch.GraphNode('2-2', new ProblemSearch.Point(2, 2), new ProblemSearch.Point(20, 20));
 var graphNodeB = new ProblemSearch.GraphNode('1-1', new ProblemSearch.Point(1, 1), new ProblemSearch.Point(10, 10));
@@ -22,7 +22,7 @@ var graph = new ProblemSearch.Graph();
 graph.addNodes([graphNodeA, graphNodeB, graphNodeC, graphNodeD, graphNodeE]);
 ```
 
-### Building graph with [problem-map-generator](https://github.com/marcbreitung/problem-map-generator)
+### Build graph with [problem-map-generator](https://github.com/marcbreitung/problem-map-generator)
 ```javascript
 var map = new ProblemMapGenerator.Map({'cols': 10, 'rows': 10, 'width': 1000, 'height': 1000});
 map.injectRandom(ProblemMapGenerator.Random);
@@ -32,8 +32,10 @@ var graphNodes = map.getNodes();
 var graph = new ProblemSearch.Graph();
 graph.addNodes(graphNodes);
 ```
+## Problem
 
-#### Building problem with graph, initial state and goal
+Build problem with graph, initial state and goal
+
 ```javascript
 var initialState = new ProblemSearch.State('2-2');
 var goal = new ProblemSearch.State('3-2');
