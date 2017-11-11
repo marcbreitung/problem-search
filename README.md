@@ -2,6 +2,8 @@
 
 ## Problem
 
+
+
 ### Building graph manually
 ```javascript
 var graphNodeA = new ProblemSearch.GraphNode('A', new ProblemSearch.Point(2, 2), new ProblemSearch.Point(20, 20));
