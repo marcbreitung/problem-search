@@ -1,8 +1,8 @@
 # Problem Search
 
+[![Build Status](https://travis-ci.org/marcbreitung/problem-search.svg?branch=master)](https://travis-ci.org/marcbreitung/problem-search)
+
 ## Problem
-
-
 
 ### Building graph manually
 ```javascript
