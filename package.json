@@ -9,10 +9,12 @@
     "url": "https://github.com/marcbreitung/problem-search.git"
   },
   "scripts": {
-    "build": "npm run eslint && npm run test && npm run webpack",
+    "build": "npm run test && npm run webpack",
+    "test": "npm run eslint && npm run test-mocha",
     "webpack": "webpack --config webpack.config.js",
     "eslint": "eslint lib/**/*.js",
-    "test": "nyc mocha --ui tdd --require babel-register test/**/*.js --reporter spec"
+    "test-mocha": "nyc --reporter=text --reporter=lcov --reporter=text-lcov mocha --ui tdd --require babel-register test/**/*.js --reporter spec",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "author": "Marc Breitung",
   "license": "MIT",
