@@ -1,6 +1,8 @@
 # Problem Search
 
 ## Problem
+
+### Building graph manually
 ```javascript
 var graphNodeA = new ProblemSearch.GraphNode('A', new ProblemSearch.Point(2, 2), new ProblemSearch.Point(20, 20));
 var graphNodeB = new ProblemSearch.GraphNode('B', new ProblemSearch.Point(1, 1), new ProblemSearch.Point(10, 10));
@@ -15,12 +17,19 @@ graphNodeD.addChildNodes([graphNodeA, graphNodeE, graphNodeC]);
 graphNodeE.addChildNodes([graphNodeA, graphNodeD]);
 
 var graph = new ProblemSearch.Graph();
-graph.addNode(graphNodeA);
-graph.addNode(graphNodeB);
-graph.addNode(graphNodeC);
-graph.addNode(graphNodeD);
-graph.addNode(graphNodeE);
+graph.addNodes([graphNodeA, graphNodeB, graphNodeC, graphNodeD, graphNodeE]);
+```
 
+### Building with [problem-map-generator](https://github.com/marcbreitung/problem-map-generator)
+```javascript
+var map = new ProblemMapGenerator.Map({'cols': 10, 'rows': 10, 'width': 1000, 'height': 1000});
+map.injectRandom(ProblemMapGenerator.Random);
+var graphNodes = map.getNodes();
+var graph = new ProblemSearch.Graph();
+graph.addNodes(nodes);
+```
+
+```javascript
 var initialState = new ProblemSearch.State('A');
 var goal = new ProblemSearch.State('B');
 
