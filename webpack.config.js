@@ -37,7 +37,6 @@ module.exports = [
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: 'problem-search.node.min.js',
-            library: 'ProblemSearch',
             libraryTarget: 'commonjs'
         },
         module: {
@@ -62,5 +61,4 @@ module.exports = [
         plugins: [
             new UglifyJSPlugin()
         ]
-    }
-];
+    }];
