@@ -71,3 +71,10 @@ var depthLimitedFirstSearch = new ProblemSearch.DepthLimitedFirstSearch();
 var result = depthLimitedFirstSearch.search(problem);
 result.solution();
 ```
+
+## Search Strategy Fabric
+```javascript
+var strategyFabric = new ProblemSearch.StrategyFabric();
+strategyFabric.registerStrategy('breadthFirstSearch', ProblemSearch.BreadthFirstSearch);
+strategyFabric.getStrategy('breadthFirstSearch')
+```
