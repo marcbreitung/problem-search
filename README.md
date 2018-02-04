@@ -72,9 +72,9 @@ var result = depthLimitedFirstSearch.search(problem);
 result.solution();
 ```
 
-## Search Strategy Fabric
+## Search Strategy Factory
 ```javascript
-var strategyFabric = new ProblemSearch.StrategyFabric();
-strategyFabric.registerStrategy('breadthFirstSearch', ProblemSearch.BreadthFirstSearch);
-strategyFabric.getStrategy('breadthFirstSearch')
+var strategyFactory = new ProblemSearch.StrategyFactory();
+strategyFactory.registerStrategy('breadthFirstSearch', ProblemSearch.BreadthFirstSearch);
+strategyFactory.getStrategy('breadthFirstSearch')
 ```

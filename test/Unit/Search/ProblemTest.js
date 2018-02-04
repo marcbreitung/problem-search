@@ -84,6 +84,37 @@ suite('Problem', function () {
         });
     });
 
+    suite('#stateData(state, property)', function () {
+        test('should return null if state and property are not defined', function () {
+            let graph = new Graph();
+            let problem = new Problem(graph, null, null);
+
+            assert.isNull(problem.stateData(null, null));
+        });
+        test('should return the state property', function () {
+            let state = new State('State');
+
+            let graph = new Graph();
+            let nodeState = new GraphNode('State', null, new Point(0, 0));
+
+            graph.addNode(nodeState);
+
+            let problem = new Problem(graph, null, null);
+            assert.deepEqual(problem.stateData(state, 'position'), new Point(0, 0));
+        });
+        test('should return null if property not exists', function () {
+            let state = new State('State');
+
+            let graph = new Graph();
+            let nodeState = new GraphNode('State', null, new Point(0, 0));
+
+            graph.addNode(nodeState);
+
+            let problem = new Problem(graph, null, null);
+            assert.isNull(problem.stateData(state, 'velocity'));
+        });
+    });
+
     suite('#goalTest(state)', function () {
         test('should return true if given state is the goal', function () {
             let initialState = new State('A');
