@@ -12,13 +12,19 @@ import {GraphNode} from './../../../lib/Graph/GraphNode';
 suite('Node', function () {
 
     let graph;
+    let graphNodeA;
+    let graphNodeB;
+    let graphNodeC;
+    let graphNodeD;
+    let graphNodeE;
 
     beforeEach(function () {
-        let graphNodeA = new GraphNode('A', new Point(2, 2), new Point(20, 20));
-        let graphNodeB = new GraphNode('B', new Point(1, 1), new Point(10, 10));
-        let graphNodeC = new GraphNode('C', new Point(2, 1), new Point(20, 10));
-        let graphNodeD = new GraphNode('D', new Point(3, 1), new Point(30, 10));
-        let graphNodeE = new GraphNode('E', new Point(3, 2), new Point(30, 20));
+
+        graphNodeA = new GraphNode('A', new Point(2, 2), new Point(20, 20));
+        graphNodeB = new GraphNode('B', new Point(1, 1), new Point(10, 10));
+        graphNodeC = new GraphNode('C', new Point(2, 1), new Point(20, 10));
+        graphNodeD = new GraphNode('D', new Point(3, 1), new Point(30, 10));
+        graphNodeE = new GraphNode('E', new Point(3, 2), new Point(30, 20));
 
         graphNodeA.addChildNodes([graphNodeB, graphNodeD, graphNodeE]);
         graphNodeB.addChildNodes([graphNodeA, graphNodeC]);
@@ -82,6 +88,23 @@ suite('Node', function () {
             let nodeD = Node.make(problem, nodeC, new Action('D'));
 
             assert.sameDeepMembers(nodeD.solution(), [parentNode, nodeB, nodeC, nodeD]);
+
+        });
+    });
+
+    suite('#solutionGraph()', function () {
+        test('should return the back path', function () {
+
+            let initialState = new State('A');
+            let goal = new State('E');
+            let problem = new Problem(graph, initialState, goal);
+            let parentNode = new Node(initialState);
+
+            let nodeB = Node.make(problem, parentNode, new Action('B'));
+            let nodeC = Node.make(problem, nodeB, new Action('C'));
+            let nodeD = Node.make(problem, nodeC, new Action('D'));
+
+            assert.sameDeepMembers(nodeD.solutionGraph(), [graphNodeA, graphNodeB, graphNodeC, graphNodeD]);
 
         });
     });

@@ -45,6 +45,20 @@ var problem = new ProblemSearch.Problem(graph, initialState, goal);
 
 ## Search Strategies
 
+### Solution
+
+The method ``solution()`` returns the solution as ``ProblemSearch.Node`` list.
+
+```javascript
+result.solution();
+```
+
+The method ``solutionGraph()`` returns the solution as ``ProblemSearch.GraphNode`` list.
+
+```javascript
+result.solutionGraph();
+```
+
 ### Breadth First Search
 ```javascript
 var breadthFirstSearch = new ProblemSearch.BreadthFirstSearch();
