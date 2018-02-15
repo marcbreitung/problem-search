@@ -20,6 +20,7 @@ suite('BreadthFirstSearch', function () {
         let graphNodeC = new GraphNode('C', new Point(2, 1), new Point(20, 10));
         let graphNodeD = new GraphNode('D', new Point(3, 1), new Point(30, 10));
         let graphNodeE = new GraphNode('E', new Point(3, 2), new Point(30, 20));
+        let graphNodeF = new GraphNode('F', new Point(4, 4), new Point(35, 25));
 
         graphNodeA.addChildNodes([graphNodeB, graphNodeD, graphNodeE]);
         graphNodeB.addChildNodes([graphNodeA, graphNodeC]);
@@ -33,6 +34,7 @@ suite('BreadthFirstSearch', function () {
         graph.addNode(graphNodeC);
         graph.addNode(graphNodeD);
         graph.addNode(graphNodeE);
+        graph.addNode(graphNodeF);
     });
 
     suite('#getCurrentNode()', function () {
@@ -106,6 +108,13 @@ suite('BreadthFirstSearch', function () {
             let nodeC = Node.make(problem, nodeB, new Action('C'));
 
             assert.sameDeepMembers(breadthFirstSearch.search(problem).solution(), [nodeA, nodeB, nodeC]);
+        });
+        test('should throw Error if initial state has no children and no solution was found', function () {
+            let initialState = new State('F');
+            let goal = new State('A');
+            let problem = new Problem(graph, initialState, goal);
+            let breadthFirstSearch = new BreadthFirstSearch();
+            assert.throws(() => breadthFirstSearch.search(problem), Error);
         });
     });
 

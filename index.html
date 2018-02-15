@@ -14,27 +14,33 @@
     var graphNodeC = new ProblemSearch.GraphNode('2-1', new ProblemSearch.Point(2, 1), new ProblemSearch.Point(20, 10));
     var graphNodeD = new ProblemSearch.GraphNode('3-1', new ProblemSearch.Point(3, 1), new ProblemSearch.Point(30, 10));
     var graphNodeE = new ProblemSearch.GraphNode('3-2', new ProblemSearch.Point(3, 2), new ProblemSearch.Point(30, 20));
+    var graphNodeF = new ProblemSearch.GraphNode('4-4', new ProblemSearch.Point(4, 4), new ProblemSearch.Point(40, 40));
 
-    //graphNodeA.addChildNodes([graphNodeB, graphNodeD, graphNodeE]);
+    graphNodeA.addChildNodes([graphNodeB, graphNodeD, graphNodeE]);
     graphNodeB.addChildNodes([graphNodeA, graphNodeC]);
     graphNodeC.addChildNodes([graphNodeB, graphNodeD]);
     graphNodeD.addChildNodes([graphNodeA, graphNodeE, graphNodeC]);
     graphNodeE.addChildNodes([graphNodeA, graphNodeD]);
 
     var graph = new ProblemSearch.Graph();
-    graph.addNodes([graphNodeA, graphNodeB, graphNodeC, graphNodeD, graphNodeE]);
+    graph.addNodes([graphNodeA, graphNodeB, graphNodeC, graphNodeD, graphNodeE, graphNodeF]);
 
-
-    var initialState = new ProblemSearch.State('2-2');
-    var goal = new ProblemSearch.State('3-2');
+    var initialState = new ProblemSearch.State('4-4');
+    var goal = new ProblemSearch.State('1-1');
 
     var problem = new ProblemSearch.Problem(graph, initialState, goal);
 
     var breadthFirstSearch = new ProblemSearch.BreadthFirstSearch();
-    var result = breadthFirstSearch.search(problem);
 
-    console.log(result.solution());
-    console.log(result.solutionGraph());
+    try {
+        var result = breadthFirstSearch.search(problem);
+        result.solution();
+        result.solutionGraph();
+    } catch (error) {
+        if (error.message === 'no_solution') {
+            console.log('No solution was found');
+        }
+    }
 
 </script>
 
