@@ -9,6 +9,7 @@ import {Problem} from './../../../../lib/Search/Problem';
 import {Graph} from './../../../../lib/Graph/Graph';
 import {GraphNode} from './../../../../lib/Graph/GraphNode';
 import {Action} from "../../../../lib/Search/Action";
+import {NoSolutionException} from "../../../../lib/Exceptions/NoSolutionException";
 
 suite('BreadthFirstSearch', function () {
 
@@ -114,7 +115,7 @@ suite('BreadthFirstSearch', function () {
             let goal = new State('A');
             let problem = new Problem(graph, initialState, goal);
             let breadthFirstSearch = new BreadthFirstSearch();
-            assert.throws(() => breadthFirstSearch.search(problem), Error);
+            assert.throws(() => breadthFirstSearch.search(problem), NoSolutionException);
         });
     });
 

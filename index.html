@@ -25,8 +25,8 @@
     var graph = new ProblemSearch.Graph();
     graph.addNodes([graphNodeA, graphNodeB, graphNodeC, graphNodeD, graphNodeE, graphNodeF]);
 
-    var initialState = new ProblemSearch.State('4-4');
-    var goal = new ProblemSearch.State('1-1');
+    var initialState = new ProblemSearch.State('1-1');
+    var goal = new ProblemSearch.State('4-4');
 
     var problem = new ProblemSearch.Problem(graph, initialState, goal);
 
@@ -37,7 +37,7 @@
         result.solution();
         result.solutionGraph();
     } catch (error) {
-        if (error.message === 'no_solution') {
+        if (error.name === 'NoSolutionException') {
             console.log('No solution was found');
         }
     }

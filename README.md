@@ -59,6 +59,25 @@ The method ``solutionGraph()`` returns the solution as ``ProblemSearch.GraphNode
 result.solutionGraph();
 ```
 
+#### Errors
+
+You can add a try/catch to check for errors:
+
+```javascript
+try {
+    var result = breadthFirstSearch.search(problem);
+    result.solutionGraph();
+} catch (error) {
+    if (error.name === 'NoSolutionException') {
+        console.log('No solution was found');
+    }
+}
+```
+
+| Error | Description |
+| --- | --- |
+| `NoSolutionException` | No solution was found |
+
 ### Breadth First Search
 ```javascript
 var breadthFirstSearch = new ProblemSearch.BreadthFirstSearch();
