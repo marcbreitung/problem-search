@@ -110,7 +110,7 @@ suite('BreadthFirstSearch', function () {
 
             assert.sameDeepMembers(breadthFirstSearch.search(problem).solution(), [nodeA, nodeB, nodeC]);
         });
-        test('should throw Error if initial state has no children and no solution was found', function () {
+        test('should throw NoSolutionException if no solution was found', function () {
             let initialState = new State('F');
             let goal = new State('A');
             let problem = new Problem(graph, initialState, goal);

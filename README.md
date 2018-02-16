@@ -69,14 +69,14 @@ try {
     result.solutionGraph();
 } catch (error) {
     if (error.name === 'NoSolutionException') {
-        console.log('No solution was found');
+        console.log('No solution found');
     }
 }
 ```
 
 | Error | Description |
 | --- | --- |
-| `NoSolutionException` | No solution was found |
+| `NoSolutionException` | No solution found |
 | `LimitException` | Maximum depth limit reached (Depth Limited Search) |
 
 ### Breadth First Search

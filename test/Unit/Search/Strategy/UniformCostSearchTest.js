@@ -9,6 +9,7 @@ import {Action} from './../../../../lib/Search/Action';
 import {Graph} from './../../../../lib/Graph/Graph';
 import {GraphNode} from './../../../../lib/Graph/GraphNode';
 import {Problem} from "../../../../lib/Search/Problem";
+import {NoSolutionException} from "../../../../lib/Exceptions/NoSolutionException";
 
 suite('BreadthFirstSearch', function () {
 
@@ -169,6 +170,13 @@ suite('BreadthFirstSearch', function () {
             let nodeC = Node.make(problem, nodeB, new Action('C'));
 
             assert.sameDeepMembers(uniformCostSearch.search(problem).solution(), [nodeA, nodeB, nodeC]);
+        });
+        test('should throw NoSolutionException if no solution was found', function () {
+            let initialState = new State('F');
+            let goal = new State('A');
+            let problem = new Problem(graph, initialState, goal);
+            let uniformCostSearch = new UniformCostSearch();
+            assert.throws(() => uniformCostSearch.search(problem), NoSolutionException);
         });
     });
 

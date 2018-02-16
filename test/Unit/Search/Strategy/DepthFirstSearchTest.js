@@ -9,6 +9,7 @@ import {Problem} from './../../../../lib/Search/Problem';
 import {Graph} from './../../../../lib/Graph/Graph';
 import {GraphNode} from './../../../../lib/Graph/GraphNode';
 import {Action} from "../../../../lib/Search/Action";
+import {NoSolutionException} from "../../../../lib/Exceptions/NoSolutionException";
 
 suite('DepthFirstSearch', function () {
 
@@ -83,6 +84,13 @@ suite('DepthFirstSearch', function () {
             let depthFirstSearch = new DepthFirstSearch();
             depthFirstSearch.search(problem);
 
+        });
+        test('should throw NoSolutionException if no solution was found', function () {
+            let initialState = new State('F');
+            let goal = new State('A');
+            let problem = new Problem(graph, initialState, goal);
+            let depthFirstSearch = new DepthFirstSearch();
+            assert.throws(() => depthFirstSearch.search(problem), NoSolutionException);
         });
     });
 

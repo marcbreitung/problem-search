@@ -26,12 +26,12 @@
     graph.addNodes([graphNodeA, graphNodeB, graphNodeC, graphNodeD, graphNodeE, graphNodeF]);
 
     var initialState = new ProblemSearch.State('1-1');
-    var goal = new ProblemSearch.State('3-2');
+    var goal = new ProblemSearch.State('2-2');
 
     var problem = new ProblemSearch.Problem(graph, initialState, goal);
 
     var breadthFirstSearch = new ProblemSearch.BreadthFirstSearch();
-    var depthLimitedSearch = new ProblemSearch.DepthLimitedSearch(2);
+    var depthLimitedSearch = new ProblemSearch.DepthFirstSearch();
 
     try {
         var result = depthLimitedSearch.search(problem);
@@ -40,7 +40,7 @@
         console.log(result);
     } catch (error) {
         if (error.name === 'NoSolutionException') {
-            console.log('No solution was found');
+            console.log('No solution found');
         } else if (error.name === 'LimitException') {
             console.log('Maximum depth limit reached');
         }
