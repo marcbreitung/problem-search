@@ -77,6 +77,7 @@ try {
 | Error | Description |
 | --- | --- |
 | `NoSolutionException` | No solution was found |
+| `LimitException` | Maximum depth limit reached (Depth Limited Search) |
 
 ### Breadth First Search
 ```javascript
@@ -98,10 +99,11 @@ var result = depthFirstSearch.search(problem);
 result.solution();
 ```
 
-### Depth Limited First Search
+### Depth Limited Search
 ```javascript
-var depthLimitedFirstSearch = new ProblemSearch.DepthLimitedFirstSearch();
-var result = depthLimitedFirstSearch.search(problem);
+var depthLimit = 5;
+var depthLimitedSearch = new ProblemSearch.DepthLimitedSearch(depthLimit);
+var result = depthLimitedSearch.search(problem);
 result.solution();
 ```
 
