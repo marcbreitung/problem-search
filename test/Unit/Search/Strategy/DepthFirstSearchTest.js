@@ -85,13 +85,6 @@ suite('DepthFirstSearch', function () {
             depthFirstSearch.search(problem);
 
         });
-        test('should throw NoSolutionException if no solution was found', function () {
-            let initialState = new State('F');
-            let goal = new State('A');
-            let problem = new Problem(graph, initialState, goal);
-            let depthFirstSearch = new DepthFirstSearch();
-            assert.throws(() => depthFirstSearch.search(problem), NoSolutionException);
-        });
     });
 
 });
