@@ -101,8 +101,8 @@ result.solution();
 
 ### Depth Limited Search
 ```javascript
-var depthLimit = 5;
-var depthLimitedSearch = new ProblemSearch.DepthLimitedSearch(depthLimit);
+var options = {'depthLimit': 5};
+var depthLimitedSearch = new ProblemSearch.DepthLimitedSearch(options);
 var result = depthLimitedSearch.search(problem);
 result.solution();
 ```
@@ -111,5 +111,11 @@ result.solution();
 ```javascript
 var strategyFactory = new ProblemSearch.StrategyFactory();
 strategyFactory.registerStrategy('breadthFirstSearch', ProblemSearch.BreadthFirstSearch);
-strategyFactory.getStrategy('breadthFirstSearch')
+strategyFactory.getStrategy('breadthFirstSearch');
+```
+Get strategies with options
+```javascript
+var strategyFactory = new ProblemSearch.StrategyFactory();
+strategyFactory.registerStrategy('depthLimitedSearch', ProblemSearch.DepthLimitedSearch);
+strategyFactory.getStrategy('depthLimitedSearch', options);
 ```

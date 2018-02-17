@@ -30,11 +30,15 @@
 
     var problem = new ProblemSearch.Problem(graph, initialState, goal);
 
-    var breadthFirstSearch = new ProblemSearch.BreadthFirstSearch();
-    var depthLimitedSearch = new ProblemSearch.DepthFirstSearch();
+    var strategyFactory = new ProblemSearch.StrategyFactory();
+    strategyFactory.registerStrategy('BreadthFirstSearch', ProblemSearch.BreadthFirstSearch);
+    strategyFactory.registerStrategy('DepthFirstSearch', ProblemSearch.DepthFirstSearch);
+    strategyFactory.registerStrategy('DepthLimitedSearch', ProblemSearch.DepthLimitedSearch);
+
+    var search = strategyFactory.getStrategy('DepthLimitedSearch', {});
 
     try {
-        var result = depthLimitedSearch.search(problem);
+        var result = search.search(problem);
         result.solution();
         result.solutionGraph();
         console.log(result);
