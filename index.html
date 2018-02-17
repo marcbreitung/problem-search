@@ -35,7 +35,7 @@
     strategyFactory.registerStrategy('DepthFirstSearch', ProblemSearch.DepthFirstSearch);
     strategyFactory.registerStrategy('DepthLimitedSearch', ProblemSearch.DepthLimitedSearch);
 
-    var search = strategyFactory.getStrategy('DepthLimitedSearch', {});
+    var search = strategyFactory.getStrategy('DepthLimitedSearch', {'limit': 3});
 
     try {
         var result = search.search(problem);

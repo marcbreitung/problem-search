@@ -101,7 +101,7 @@ result.solution();
 
 ### Depth Limited Search
 ```javascript
-var options = {'depthLimit': 5};
+var options = {'limit': 5};
 var depthLimitedSearch = new ProblemSearch.DepthLimitedSearch(options);
 var result = depthLimitedSearch.search(problem);
 result.solution();
