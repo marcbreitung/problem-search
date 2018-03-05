@@ -21,8 +21,8 @@ suite('DepthFirstSearch', function () {
 
     suite('#recursiveSearch(node, problem)', function () {
         test('should add the node to explored', function () {
-            let initialState = new State('A', TestGraphNodes.graphNodeA);
-            let goal = new State('B', TestGraphNodes.graphNodeB);
+            let initialState = new State(TestGraphNodes.graphNodeA);
+            let goal = new State(TestGraphNodes.graphNodeB);
             let problem = new Problem(graph, initialState, goal);
             let nodeA = new Node(initialState);
 
@@ -32,8 +32,8 @@ suite('DepthFirstSearch', function () {
             assert.sameDeepMembers(depthFirstSearch.explored, [nodeA]);
         });
         test('should return the node if given node is the goal', function () {
-            let initialState = new State('A', TestGraphNodes.graphNodeA);
-            let goal = new State('C', TestGraphNodes.graphNodeC);
+            let initialState = new State(TestGraphNodes.graphNodeA);
+            let goal = new State(TestGraphNodes.graphNodeC);
             let problem = new Problem(graph, initialState, goal);
 
             let depthFirstSearch = new DepthFirstSearch();
@@ -55,8 +55,8 @@ suite('DepthFirstSearch', function () {
         });
         test('should return path from initial state to goal', function () {
 
-            let initialState = new State('A', TestGraphNodes.graphNodeA);
-            let goal = new State('D', TestGraphNodes.graphNodeD);
+            let initialState = new State(TestGraphNodes.graphNodeA);
+            let goal = new State(TestGraphNodes.graphNodeD);
             let problem = new Problem(graph, initialState, goal);
 
             let depthFirstSearch = new DepthFirstSearch();
@@ -70,8 +70,8 @@ suite('DepthFirstSearch', function () {
 
         });
         test('should throw NoSolutionException if no solution was found', function () {
-            let initialState = new State('F', TestGraphNodes.graphNodeF);
-            let goal = new State('A', TestGraphNodes.graphNodeA);
+            let initialState = new State(TestGraphNodes.graphNodeF);
+            let goal = new State(TestGraphNodes.graphNodeA);
             let problem = new Problem(graph, initialState, goal);
             let depthFirstSearch = new DepthFirstSearch();
 

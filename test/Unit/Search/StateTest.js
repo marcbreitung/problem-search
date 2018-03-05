@@ -9,8 +9,8 @@ suite('State', function () {
     suite('#constructor(id)', function () {
         test('should set the property id and node', function () {
             let graphNode = new GraphNode('A', new Point(2, 2), new Point(20, 20));
-            let state = new State('State ID', graphNode);
-            assert.propertyVal(state, 'id', 'State ID');
+            let state = new State(graphNode);
+            assert.propertyVal(state, 'id', 'A');
             assert.deepPropertyVal(state, 'node', graphNode);
         });
     });

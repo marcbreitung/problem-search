@@ -24,8 +24,8 @@ suite('DepthLimitedSearch', function () {
         test('should add the node to explored', function () {
             let searchLimit = 10;
 
-            let initialState = new State('A', TestGraphNodes.graphNodeA);
-            let goal = new State('B', TestGraphNodes.graphNodeB);
+            let initialState = new State(TestGraphNodes.graphNodeA);
+            let goal = new State(TestGraphNodes.graphNodeB);
             let problem = new Problem(graph, initialState, goal);
 
             let nodeA = new Node(initialState);
@@ -40,8 +40,8 @@ suite('DepthLimitedSearch', function () {
         test('should return the node if given node is the goal', function () {
             let searchLimit = 10;
 
-            let initialState = new State('A', TestGraphNodes.graphNodeA);
-            let goal = new State('C', TestGraphNodes.graphNodeC);
+            let initialState = new State(TestGraphNodes.graphNodeA);
+            let goal = new State(TestGraphNodes.graphNodeC);
             let problem = new Problem(graph, initialState, goal);
 
             let depthLimitedSearch = new DepthLimitedSearch({limit: searchLimit});
@@ -64,8 +64,8 @@ suite('DepthLimitedSearch', function () {
         });
         test('should throw LimitException if limit is 0', function () {
             let searchLimit = 1;
-            let initialState = new State('A', TestGraphNodes.graphNodeA);
-            let goal = new State('C', TestGraphNodes.graphNodeC);
+            let initialState = new State(TestGraphNodes.graphNodeA);
+            let goal = new State(TestGraphNodes.graphNodeC);
             let problem = new Problem(graph, initialState, goal);
             let depthLimitedSearch = new DepthLimitedSearch({limit: searchLimit});
 
@@ -73,8 +73,8 @@ suite('DepthLimitedSearch', function () {
         });
         test('should throw NoSolutionException if no solution was found', function () {
             let searchLimit = 10;
-            let initialState = new State('F', TestGraphNodes.graphNodeF);
-            let goal = new State('A', TestGraphNodes.graphNodeA);
+            let initialState = new State(TestGraphNodes.graphNodeF);
+            let goal = new State(TestGraphNodes.graphNodeA);
             let problem = new Problem(graph, initialState, goal);
             let depthLimitedSearch = new DepthLimitedSearch({limit: searchLimit});
 
@@ -82,8 +82,8 @@ suite('DepthLimitedSearch', function () {
         });
         test('should return path from initial state to goal', function () {
             let searchLimit = 10;
-            let initialState = new State('A', TestGraphNodes.graphNodeA);
-            let goal = new State('D', TestGraphNodes.graphNodeD);
+            let initialState = new State(TestGraphNodes.graphNodeA);
+            let goal = new State(TestGraphNodes.graphNodeD);
             let problem = new Problem(graph, initialState, goal);
 
             let nodeA = new Node(initialState);

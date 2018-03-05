@@ -40,8 +40,8 @@ Build problem with graph, initial state and goal
 var graphNodeA = new ProblemSearch.GraphNode('2-2', new ProblemSearch.Point(2, 2), new ProblemSearch.Point(20, 20));
 var graphNodeE = new ProblemSearch.GraphNode('3-2', new ProblemSearch.Point(3, 2), new ProblemSearch.Point(30, 20));
 
-var initialState = new ProblemSearch.State('2-2', graphNodeA);
-var goal = new ProblemSearch.State('3-2', graphNodeE);
+var initialState = new ProblemSearch.State(graphNodeA);
+var goal = new ProblemSearch.State(graphNodeE);
 
 var problem = new ProblemSearch.Problem(graph, initialState, goal);
 ```
