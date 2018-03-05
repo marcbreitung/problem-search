@@ -9,6 +9,7 @@ import {Problem} from "../../../../lib/Search/Problem";
 import {NoSolutionException} from "../../../../lib/Exceptions/NoSolutionException";
 
 import {TestGraph} from "./../../../fixtures/TestGraph";
+import {TestGraphNodes} from "./../../../fixtures/TestGraph";
 
 suite('BreadthFirstSearch', function () {
 
@@ -20,8 +21,7 @@ suite('BreadthFirstSearch', function () {
 
     suite('#sortFrontier()', function () {
         test('should return frontier array sorted by path cost', function () {
-
-            let initialState = new State('A');
+            let initialState = new State('A', TestGraphNodes.graphNodeA);
 
             let nodeA = new Node(initialState);
             nodeA.pathCost = 8;
@@ -47,8 +47,7 @@ suite('BreadthFirstSearch', function () {
 
     suite('#getCurrentNode()', function () {
         test('should return frontier with lowest path cost', function () {
-
-            let initialState = new State('A');
+            let initialState = new State('A', TestGraphNodes.graphNodeA);
 
             let nodeA = new Node(initialState);
             nodeA.pathCost = 8;
@@ -72,24 +71,23 @@ suite('BreadthFirstSearch', function () {
 
     suite('#updateNodeWithHigherPathCost(node)', function () {
         test('should replace node with lower path cost', function () {
-
-            let initialState = new State('A');
+            let initialState = new State('A', TestGraphNodes.graphNodeA);
 
             let nodeA = new Node(initialState);
             nodeA.pathCost = 8;
-            nodeA.state = new State('A');
+            nodeA.state = new State('A', TestGraphNodes.graphNodeA);
 
             let nodeB = new Node(initialState);
             nodeB.pathCost = 65;
-            nodeB.state = new State('B');
+            nodeB.state = new State('B', TestGraphNodes.graphNodeB);
 
             let nodeC = new Node(initialState);
             nodeC.pathCost = 3;
-            nodeC.state = new State('C');
+            nodeC.state = new State('C', TestGraphNodes.graphNodeC);
 
             let nodeD = new Node(initialState);
             nodeD.pathCost = 42;
-            nodeD.state = new State('D');
+            nodeD.state = new State('D', TestGraphNodes.graphNodeD);
 
             let uniformCostSearch = new UniformCostSearch();
 
@@ -99,7 +97,7 @@ suite('BreadthFirstSearch', function () {
 
             let nodeDReplace = new Node(initialState);
             nodeDReplace.pathCost = 1;
-            nodeDReplace.state = new State('D');
+            nodeDReplace.state = new State('D', TestGraphNodes.graphNodeD);
 
             uniformCostSearch.updateNodeWithHigherPathCost(nodeDReplace);
 
@@ -109,14 +107,13 @@ suite('BreadthFirstSearch', function () {
 
     suite('#extend(problem, node)', function () {
         test('should add extended nodes to frontier', function () {
-
-            let initialState = new State('A');
-            let goal = new State('C');
+            let initialState = new State('A', TestGraphNodes.graphNodeA);
+            let goal = new State('C', TestGraphNodes.graphNodeC);
             let problem = new Problem(graph, initialState, goal);
 
             let uniformCostSearch = new UniformCostSearch();
 
-            uniformCostSearch.extend(problem, new Node(new State('A')));
+            uniformCostSearch.extend(problem, new Node(new State('A', TestGraphNodes.graphNodeA)));
 
             let nodeA = new Node(initialState);
             let nodeB = Node.make(problem, nodeA, new Action('B'));
@@ -124,14 +121,13 @@ suite('BreadthFirstSearch', function () {
             let nodeE = Node.make(problem, nodeA, new Action('E'));
 
             assert.sameDeepOrderedMembers(uniformCostSearch.frontier, [nodeB, nodeD, nodeE]);
-
         });
     });
 
     suite('#search(problem)', function () {
         test('should direct return path from initialStet to goal if initial state is goal', function () {
-            let initialState = new State('A');
-            let goal = new State('A');
+            let initialState = new State('A', TestGraphNodes.graphNodeA);
+            let goal = new State('A', TestGraphNodes.graphNodeA);
             let problem = new Problem(graph, initialState, goal);
 
             let uniformCostSearch = new UniformCostSearch();
@@ -141,8 +137,8 @@ suite('BreadthFirstSearch', function () {
             assert.sameDeepMembers(uniformCostSearch.search(problem).solution(), [nodeA]);
         });
         test('should return path from initial state to goal', function () {
-            let initialState = new State('A');
-            let goal = new State('D');
+            let initialState = new State('A', TestGraphNodes.graphNodeA);
+            let goal = new State('D', TestGraphNodes.graphNodeD);
             let problem = new Problem(graph, initialState, goal);
 
             let uniformCostSearch = new UniformCostSearch();
@@ -153,10 +149,11 @@ suite('BreadthFirstSearch', function () {
             assert.sameDeepMembers(uniformCostSearch.search(problem).solution(), [nodeA, nodeC]);
         });
         test('should throw NoSolutionException if no solution was found', function () {
-            let initialState = new State('F');
-            let goal = new State('A');
+            let initialState = new State('F', TestGraphNodes.graphNodeF);
+            let goal = new State('A', TestGraphNodes.graphNodeA);
             let problem = new Problem(graph, initialState, goal);
             let uniformCostSearch = new UniformCostSearch();
+
             assert.throws(() => uniformCostSearch.search(problem), NoSolutionException);
         });
     });

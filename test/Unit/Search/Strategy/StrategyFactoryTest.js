@@ -10,12 +10,14 @@ suite('StrategyFactory', function () {
         test('should add a new strategy', function () {
             let strategyFactory = new StrategyFactory();
             strategyFactory.registerStrategy('breadthFirstSearch', BreadthFirstSearch);
+
             assert.deepEqual(strategyFactory.types, {'breadthFirstSearch': BreadthFirstSearch});
         });
         test('should not add a new strategy without search', function () {
             let strategyFactory = new StrategyFactory();
             strategyFactory.registerStrategy('breadthFirstSearch', BreadthFirstSearch);
             strategyFactory.registerStrategy('novalidstrategy', StrategyFactory);
+
             assert.deepEqual(strategyFactory.types, {'breadthFirstSearch': BreadthFirstSearch});
         });
     });
@@ -25,14 +27,15 @@ suite('StrategyFactory', function () {
             let breadthFirstSearch = new BreadthFirstSearch();
             let strategyFactory = new StrategyFactory();
             strategyFactory.registerStrategy('breadthFirstSearch', BreadthFirstSearch);
+
             assert.deepEqual(strategyFactory.getStrategy('breadthFirstSearch'), breadthFirstSearch);
         });
         test('should return NullSearch if strategy not exists', function () {
             let nullSearch = new NullSearch();
             let strategyFactory = new StrategyFactory();
             strategyFactory.registerStrategy('breadthFirstSearch', BreadthFirstSearch);
+
             assert.deepEqual(strategyFactory.getStrategy('unknownSearch'), nullSearch);
         });
     });
-
 });

@@ -42,12 +42,14 @@ suite('Node', function () {
 
     suite('#constructor(state)', function () {
         test('should set the property state', function () {
-            let state = new State('State');
+            let graphNode = new GraphNode('State', new Point(2, 2), new Point(20, 20));
+            let state = new State('State', graphNode);
             let node = new Node(state);
             assert.propertyVal(node, 'state', state);
         });
         test('should initialize properties parent, action and pathCost', function () {
-            let state = new State('State');
+            let graphNode = new GraphNode('State', new Point(2, 2), new Point(20, 20));
+            let state = new State('State', graphNode);
             let node = new Node(state);
             assert.propertyVal(node, 'parent', null);
             assert.propertyVal(node, 'action', null);
@@ -58,8 +60,8 @@ suite('Node', function () {
     suite('#make(problem, parent, action)', function () {
         test('should make a new node', function () {
 
-            let initialState = new State('A');
-            let goal = new State('E');
+            let initialState = new State('A', graphNodeA);
+            let goal = new State('E', graphNodeE);
             let problem = new Problem(graph, initialState, goal);
             let parentNode = new Node(initialState);
             let action = new Action('B');
@@ -78,8 +80,8 @@ suite('Node', function () {
     suite('#solution()', function () {
         test('should return the back path', function () {
 
-            let initialState = new State('A');
-            let goal = new State('E');
+            let initialState = new State('A', graphNodeA);
+            let goal = new State('E', graphNodeE);
             let problem = new Problem(graph, initialState, goal);
             let parentNode = new Node(initialState);
 
@@ -95,8 +97,8 @@ suite('Node', function () {
     suite('#solutionGraph()', function () {
         test('should return the back path', function () {
 
-            let initialState = new State('A');
-            let goal = new State('E');
+            let initialState = new State('A', graphNodeA);
+            let goal = new State('E', graphNodeE);
             let problem = new Problem(graph, initialState, goal);
             let parentNode = new Node(initialState);
 

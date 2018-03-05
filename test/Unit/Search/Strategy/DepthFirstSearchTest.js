@@ -3,13 +3,13 @@ let assert = require('chai').assert;
 import {DepthFirstSearch} from './../../../../lib/Search/Strategy/DepthFirstSearch';
 
 import {Node} from './../../../../lib/Search/Node';
-import {Point} from '../../../../lib/Graph/Point';
 import {State} from './../../../../lib/Search/State';
 import {Problem} from './../../../../lib/Search/Problem';
 import {Action} from "../../../../lib/Search/Action";
 import {NoSolutionException} from "../../../../lib/Exceptions/NoSolutionException";
 
 import {TestGraph} from "./../../../fixtures/TestGraph";
+import {TestGraphNodes} from "../../../fixtures/TestGraph";
 
 suite('DepthFirstSearch', function () {
 
@@ -21,8 +21,8 @@ suite('DepthFirstSearch', function () {
 
     suite('#recursiveSearch(node, problem)', function () {
         test('should add the node to explored', function () {
-            let initialState = new State('A');
-            let goal = new State('B');
+            let initialState = new State('A', TestGraphNodes.graphNodeA);
+            let goal = new State('B', TestGraphNodes.graphNodeB);
             let problem = new Problem(graph, initialState, goal);
             let nodeA = new Node(initialState);
 
@@ -32,8 +32,8 @@ suite('DepthFirstSearch', function () {
             assert.sameDeepMembers(depthFirstSearch.explored, [nodeA]);
         });
         test('should return the node if given node is the goal', function () {
-            let initialState = new State('A');
-            let goal = new State('C');
+            let initialState = new State('A', TestGraphNodes.graphNodeA);
+            let goal = new State('C', TestGraphNodes.graphNodeC);
             let problem = new Problem(graph, initialState, goal);
 
             let depthFirstSearch = new DepthFirstSearch();
@@ -49,13 +49,14 @@ suite('DepthFirstSearch', function () {
     suite('#search(problem)', function () {
         test('should initialize frontier and explored', function () {
             let depthFirstSearch = new DepthFirstSearch();
+
             assert.deepPropertyVal(depthFirstSearch, 'frontier', []);
             assert.deepPropertyVal(depthFirstSearch, 'explored', []);
         });
         test('should return path from initial state to goal', function () {
 
-            let initialState = new State('A');
-            let goal = new State('D');
+            let initialState = new State('A', TestGraphNodes.graphNodeA);
+            let goal = new State('D', TestGraphNodes.graphNodeD);
             let problem = new Problem(graph, initialState, goal);
 
             let depthFirstSearch = new DepthFirstSearch();
@@ -69,10 +70,11 @@ suite('DepthFirstSearch', function () {
 
         });
         test('should throw NoSolutionException if no solution was found', function () {
-            let initialState = new State('F');
-            let goal = new State('A');
+            let initialState = new State('F', TestGraphNodes.graphNodeF);
+            let goal = new State('A', TestGraphNodes.graphNodeA);
             let problem = new Problem(graph, initialState, goal);
             let depthFirstSearch = new DepthFirstSearch();
+
             assert.throws(() => depthFirstSearch.search(problem), NoSolutionException);
         });
     });

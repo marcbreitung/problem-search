@@ -11,6 +11,8 @@ graphNodes.graphNodeD = new GraphNode('D', new Point(3, 1), new Point(30, 10));
 graphNodes.graphNodeE = new GraphNode('E', new Point(3, 2), new Point(30, 20));
 graphNodes.graphNodeF = new GraphNode('F', new Point(4, 4), new Point(35, 25));
 
+graphNodes.graphNodeQ = new GraphNode('Q', new Point(0, 0), new Point(0, 0));
+
 graphNodes.graphNodeX = new GraphNode('X', new Point(5, 5), new Point(50, 50));
 graphNodes.graphNodeY = new GraphNode('Y', new Point(6, 6), new Point(60, 60));
 
