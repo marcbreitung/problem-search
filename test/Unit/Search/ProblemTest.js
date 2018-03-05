@@ -100,14 +100,4 @@ suite('Problem', function () {
             assert.isUndefined(problem.result(new State('Q', TestGraphNodes.graphNodeQ), new Action('B')));
         });
     });
-
-    suite('#findGraphNodeByState(state)', function () {
-        test('should returns a GraphNode searched by the given state', function () {
-            let initialState = new State('A', TestGraphNodes.graphNodeA);
-            let goal = new State('B', TestGraphNodes.graphNodeB);
-            let problem = new Problem(graph, initialState, goal);
-
-            assert.deepEqual(problem.findGraphNodeByState(new State('A', TestGraphNodes.graphNodeA)), TestGraphNodes.graphNodeA);
-        });
-    });
 });
