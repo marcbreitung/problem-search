@@ -3,35 +3,17 @@ let assert = require('chai').assert;
 import {BaseSearch} from './../../../../lib/Search/Strategy/BaseSearch';
 
 import {Node} from './../../../../lib/Search/Node';
-import {Point} from '../../../../lib/Graph/Point';
 import {State} from './../../../../lib/Search/State';
 import {Problem} from './../../../../lib/Search/Problem';
-import {Graph} from './../../../../lib/Graph/Graph';
-import {GraphNode} from './../../../../lib/Graph/GraphNode';
+
+import {TestGraph} from "./../../../fixtures/TestGraph";
 
 suite('BaseSearch', function () {
 
     let graph;
 
     beforeEach(function () {
-        let graphNodeA = new GraphNode('A', new Point(2, 2), new Point(20, 20));
-        let graphNodeB = new GraphNode('B', new Point(1, 1), new Point(10, 10));
-        let graphNodeC = new GraphNode('C', new Point(2, 1), new Point(20, 10));
-        let graphNodeD = new GraphNode('D', new Point(3, 1), new Point(30, 10));
-        let graphNodeE = new GraphNode('E', new Point(3, 2), new Point(30, 20));
-
-        graphNodeA.addChildNodes([graphNodeB, graphNodeD, graphNodeE]);
-        graphNodeB.addChildNodes([graphNodeA, graphNodeC]);
-        graphNodeC.addChildNodes([graphNodeB, graphNodeD]);
-        graphNodeD.addChildNodes([graphNodeA, graphNodeE, graphNodeC]);
-        graphNodeE.addChildNodes([graphNodeA, graphNodeD]);
-
-        graph = new Graph();
-        graph.addNode(graphNodeA);
-        graph.addNode(graphNodeB);
-        graph.addNode(graphNodeC);
-        graph.addNode(graphNodeD);
-        graph.addNode(graphNodeE);
+        graph = TestGraph;
     });
 
     suite('#constructor()', function () {
