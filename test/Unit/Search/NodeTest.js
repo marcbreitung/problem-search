@@ -69,7 +69,7 @@ suite('Node', function () {
             assert.propertyVal(node, 'parent', parentNode);
             assert.propertyVal(node, 'action', action);
             assert.propertyVal(node, 'action', action);
-            assert.deepPropertyVal(node, 'state', new State('B'));
+            assert.deepPropertyVal(node, 'state', new State('B', graphNodeB));
             assert.closeTo(node.pathCost, 14.1421, 0.2);
 
         });
