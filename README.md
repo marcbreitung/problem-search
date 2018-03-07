@@ -112,7 +112,6 @@ result.solution();
 
 ### Greedy Best First Search
 ```javascript
-var greedyBestFirstSearch = new ProblemSearch.GreedyBestFirstSearch(options);
 var result = greedyBestFirstSearch.search(problem);
 result.solution();
 ```
