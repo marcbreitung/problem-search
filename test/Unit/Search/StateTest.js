@@ -14,5 +14,11 @@ suite('State', function () {
             assert.deepPropertyVal(state, 'node', graphNode);
         });
     });
-
+    suite('#distance(state)', function () {
+        test('should return the distance', function () {
+            let stateA = new State(new GraphNode('A', new Point(2, 2), new Point(0, 0)));
+            let stateB = new State(new GraphNode('B', new Point(2, 2), new Point(0, 20)));
+            assert.equal(stateA.distance(stateB), 20);
+        });
+    });
 });

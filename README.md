@@ -110,6 +110,13 @@ var result = depthLimitedSearch.search(problem);
 result.solution();
 ```
 
+### Greedy Best First Search
+```javascript
+var greedyBestFirstSearch = new ProblemSearch.GreedyBestFirstSearch(options);
+var result = greedyBestFirstSearch.search(problem);
+result.solution();
+```
+
 ## Search Strategy Factory
 ```javascript
 var strategyFactory = new ProblemSearch.StrategyFactory();

@@ -5,6 +5,7 @@ import {GraphNode} from "../../lib/Graph/GraphNode";
 let graphNodes = {};
 
 graphNodes.graphNodeA = new GraphNode('A', new Point(2, 2), new Point(20, 20));
+graphNodes.substGraphNodeA = new GraphNode('A', new Point(2, 2), new Point(50, 50));
 graphNodes.graphNodeB = new GraphNode('B', new Point(1, 1), new Point(10, 10));
 graphNodes.graphNodeC = new GraphNode('C', new Point(2, 1), new Point(20, 10));
 graphNodes.graphNodeD = new GraphNode('D', new Point(3, 1), new Point(30, 10));
