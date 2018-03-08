@@ -43,7 +43,7 @@ suite('AStarSearch', function () {
             aStarSearch.frontier = [nodeA, nodeB, nodeC];
             aStarSearch.sortFrontier(goal);
 
-            assert.sameDeepOrderedMembers(aStarSearch.frontier, [nodeC, nodeB, nodeA]);
+            assert.sameDeepOrderedMembers(aStarSearch.frontier, [nodeA, nodeC, nodeB]);
         });
     });
 
@@ -70,7 +70,7 @@ suite('AStarSearch', function () {
             aStarSearch.frontier = [nodeA, nodeB, nodeC];
             aStarSearch.updateFrontier(nodeCSubstitution, goal);
 
-            assert.sameDeepOrderedMembers(aStarSearch.frontier, [nodeCSubstitution, nodeB, nodeA]);
+            assert.sameDeepOrderedMembers(aStarSearch.frontier, [nodeCSubstitution, nodeA, nodeB]);
         });
     });
 
