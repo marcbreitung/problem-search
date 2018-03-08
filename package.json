@@ -1,6 +1,6 @@
 {
   "name": "problem-search",
-  "version": "3.6.0",
+  "version": "3.6.1",
   "description": "AI search problems strategies",
   "main": "dist/problem-search.node.min.js",
   "module": "dist/problem-search.node.min.js",
