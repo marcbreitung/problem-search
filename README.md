@@ -117,6 +117,13 @@ var result = greedyBestFirstSearch.search(problem);
 result.solution();
 ```
 
+### A* Search
+```javascript
+var aStarSearch = new ProblemSearch.AStarSearch(options);
+var result = aStarSearch.search(problem);
+result.solution();
+```
+
 ## Search Strategy Factory
 ```javascript
 var strategyFactory = new ProblemSearch.StrategyFactory();
