@@ -16,7 +16,7 @@
     var graphNodeE = new ProblemSearch.GraphNode('3-2', new ProblemSearch.Point(3, 2), new ProblemSearch.Point(30, 20));
     var graphNodeF = new ProblemSearch.GraphNode('4-4', new ProblemSearch.Point(4, 4), new ProblemSearch.Point(40, 40));
 
-    graphNodeA.addChildNodes([graphNodeB, graphNodeD, graphNodeE]);
+    graphNodeA.addChildNodes([graphNodeB, graphNodeD]);
     graphNodeB.addChildNodes([graphNodeA, graphNodeC]);
     graphNodeC.addChildNodes([graphNodeB, graphNodeD]);
     graphNodeD.addChildNodes([graphNodeA, graphNodeE, graphNodeC]);
@@ -35,14 +35,15 @@
     strategyFactory.registerStrategy('DepthFirstSearch', ProblemSearch.DepthFirstSearch);
     strategyFactory.registerStrategy('DepthLimitedSearch', ProblemSearch.DepthLimitedSearch);
     strategyFactory.registerStrategy('GreedyBestFirstSearch', ProblemSearch.GreedyBestFirstSearch);
+    strategyFactory.registerStrategy('AStarSearch', ProblemSearch.AStarSearch);
 
-    var search = strategyFactory.getStrategy('GreedyBestFirstSearch');
+    var search = strategyFactory.getStrategy('AStarSearch');
 
     try {
         var result = search.search(problem);
         result.solution();
         result.solutionGraph();
-        console.log(result);
+        console.log(result,search.frontier.length);
     } catch (error) {
         if (error.name === 'NoSolutionException') {
             console.log('No solution found');
